@@ -2,6 +2,8 @@
 
 ## This is a comprehensive application for managing restaurant POS operations, built using the MERN stack + REST API, optimized for desktop use.
 
+## This repo was created to hide sensitive data in the commits of the https://github.com/Piriya-K/restaurant-POS-system-vite repo!
+
 Application Details:
 
 ### 1. User Management:
