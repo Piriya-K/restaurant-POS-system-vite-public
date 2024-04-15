@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.panel {
+  @apply  shadow-md shadow-slate-600 rounded-md bg-slate-300;
+}
+
+.panel-inner {
+  @apply grid grid-cols-2 gap-2 m-2 content-start;
+}
+
+.panel-button {
+  @apply rounded-md shadow-md h-10 font-semibold;
+}
+
+.panel-button-blue {
+  @apply bg-blue-300;
+}
+
+.panel-button-yellow {
+  @apply bg-yellow-200;
+}
+
+.dialog-panel {
+  @apply shadow-lg rounded-md;
+}
+
+.dialog-button {
+  @apply shadow-lg rounded-md bg-white py-1 text-xs mt-2;
+}
+
+.navbar-button {
+  @apply bg-slate-400 self-center rounded-md p-1
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
