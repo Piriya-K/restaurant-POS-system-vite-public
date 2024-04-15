@@ -1,8 +1,31 @@
-# React + Vite
+# Full-Stack, Web-Based Restaurant POS System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## This is a comprehensive application for managing restaurant POS operations, built using the MERN stack + REST API, optimized for desktop use.
 
-Currently, two official plugins are available:
+Application Details:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. User Management:
+   * Create, log in, and access the application.
+   * Modify account details such as username, password, and profile image (uploaded images are securely stored on the server).
+
+### 2. Order Management:
+   * Place orders: Add items to table orders by selecting items and quantities.
+   * Save orders: Persist placed orders to tables, updating table status from available to occupied.
+   * Print orders: Generate PDFs of placed orders for kitchen use.
+   * Checkout: Clear placed orders for tables, making them available for new customers.
+
+### 3. Item & Category Management:
+   * Manage food items and categories: Add, edit, or delete items and categories, including control over names, prices, and categories.
+
+### 4. Security:
+   * Passwords are securely hashed before storage.
+   * All server requests are authenticated and validated.
+
+<strong>Access the application at https://pos-system-mern-frontend-piriya.onrender.com</strong>
+
+<strong>Sign-up for a new account or sign-in with the following credentials: </br>
+username: a </br>
+password: a
+</strong>
+
+Deployed on Render!
