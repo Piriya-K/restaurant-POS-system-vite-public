@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TableSection = ({ clickTable, table1, table2 }) => {
+  const [tables, setTables] = useState([
+    {
+      _id: {
+        $oid: "662d57e33c9f9478318cd001",
+      },
+      Table: 1,
+      Flag: true,
+    },
+    {
+      _id: {
+        $oid: "662d57e33c9f9478318cd002",
+      },
+      Table: 2,
+      Flag: false,
+    },
+    {
+      _id: {
+        $oid: "662d57e33c9f9478318cd003",
+      },
+      Table: 3,
+      Flag: false,
+    },
+  ]);
   const handleTableClick = (e) => {
     const table = e.target.value;
     clickTable(table);
@@ -8,11 +31,28 @@ const TableSection = ({ clickTable, table1, table2 }) => {
 
   return (
     <>
-      <div className="flex justify-evenly items-center h-5/6">
-        <div className="flex flex-col basis-1/5 flex-initial">
+      <div className="flex justify-evenly items-center border bg-slate-500 h-full w-full">
+        <div
+          id="table"
+          className="flex flex-col flex-initial w-[10dvw] h-[15dvh] "
+        >
+          {/* {tables.map((table) => (
+            <>
+              <button
+                className="panel-button-blue rounded-md h-fit"
+                value="T1"
+                draggable="true"
+                onClick={(e) => handleTableClick(e)}
+              >
+                {table.Table}
+              </button>
+            </>
+          ))} */}
+
           <button
-            className="panel-button-blue rounded-md h-fit"
+            className="panel-button-blue rounded-md h-[80%]"
             value="T1"
+            draggable="true"
             onClick={(e) => handleTableClick(e)}
           >
             TABLE 1
@@ -25,10 +65,14 @@ const TableSection = ({ clickTable, table1, table2 }) => {
             )}
           </div>
         </div>
-        <div className="flex flex-col basis-1/5 flex-initial">
+        <div
+          id="table"
+          className="flex flex-col flex-initial w-[10dvw] h-[15dvh] "
+        >
           <button
-            className="panel-button-blue rounded-md h-fit"
+            className="panel-button-blue rounded-md h-[80%]"
             value="T2"
+            draggable="true"
             onClick={(e) => handleTableClick(e)}
           >
             TABLE 2

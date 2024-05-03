@@ -1,5 +1,5 @@
 //use express.js to create http routes
-//run the server using the .env file: node --env-file=.env ./index.js
+//run the development server using the .env file: node --env-file=.env ./index.js
 
 import express from "express";
 import mongoose from "mongoose";

@@ -27,29 +27,26 @@ const DeleteItemDialog = ({
   return (
     <Dialog className="relative z-50" open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <Dialog.Panel className="dialog-panel bg-gray-500 p-10">
+      <div className="dialog-panel-bg">
+        <Dialog.Panel className="shadow-lg rounded-md bg-gray-500 p-10 h-[30dvh] w-[25dvw]">
           <Dialog.Title className="pb-5"></Dialog.Title>
-          <p>{`Confirm Delete: ${selectedItem.itemName}?`} </p>
-          <br />
-          <button
-            className="dialog-button mr-3 px-2"
-            onClick={() => {
-              handleDeleteItem(selectedItem._id, userToken);
-            }}
-          >
-            Delete
-          </button>
-          <button className="dialog-button px-5" onClick={onClose}>
-            Cancel
-          </button>
-          {editResponse && (
-            <>
-              <br />
-              <br />
-              <p>{editResponse}</p>
-            </>
-          )}
+          <p className="text-center">
+            {`Confirm Delete: ${selectedItem.itemName}?`}{" "}
+          </p>
+          <div className="outer-div-dialog-buttons">
+            <button
+              className="dialog-button"
+              onClick={() => {
+                handleDeleteItem(selectedItem._id, userToken);
+              }}
+            >
+              Delete
+            </button>
+            <button className="dialog-button" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
+          {editResponse && <p className="dialog-response">{editResponse}</p>}
         </Dialog.Panel>
       </div>
     </Dialog>

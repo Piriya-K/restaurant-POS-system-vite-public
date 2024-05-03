@@ -11,17 +11,16 @@ const LeftPanel = ({ onCategoryClick }) => {
 
   return (
     <div className="panel">
-      <div className="panel-inner overflow-y-scroll h-[20rem]">
+      <div className="panel-inner">
         {category.map((eachCategory) => (
-          <div key={eachCategory._id}>
-            <button
-              className="panel-button-yellow panel-button w-full"
-              type="button"
-              onClick={() => handleClick(eachCategory)}
-            >
-              {eachCategory.categoryName}
-            </button>
-          </div>
+          <button
+            key={eachCategory._id}
+            className="panel-button-yellow panel-button"
+            type="button"
+            onClick={() => handleClick(eachCategory)}
+          >
+            {eachCategory.categoryName}
+          </button>
         ))}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="pl-4 text-xl bg-gray-200 h-14">
+    <div className="pl-4 bg-gray-200 h-[12dvh]">
       <span>Footer</span>
     </div>
   );

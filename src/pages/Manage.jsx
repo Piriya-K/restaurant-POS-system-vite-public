@@ -28,32 +28,34 @@ const Manage = () => {
   return (
     <>
       <NavBar />
-      <div className="text-xs flex h-dvh items-center">
-        <div className="flex flex-col justify-items-center">
-          <button
-            onClick={() => handleManageCategoryClick()}
-            className={
-              showManageCat == true
-                ? "bg-green-400 rounded-md px-4 mx-10 my-2"
-                : "bg-gray-400 rounded-md px-4 mx-10 my-2"
-            }
-          >
-            Manage Category
-          </button>
-          <button
-            onClick={() => handleManageItemClick()}
-            className={
-              showManageItem == true
-                ? "bg-green-400 rounded-md px-4 mx-10 my-2"
-                : "bg-gray-400 rounded-md px-4 mx-10 my-2"
-            }
-          >
-            Manage Item
-          </button>
-        </div>
-        <div className="w-full">
-          {showManageCat ? <ManageCat /> : null}
-          {showManageItem ? <ManageItem /> : null}
+      <div className="flex justify-center h-[76dvh] items-center bg-slate-500">
+        <div className="flex h-full w-[80%]">
+          <div className="flex flex-col justify-center items-center  h-full w-[30%] ">
+            <button
+              onClick={() => handleManageCategoryClick()}
+              className={
+                showManageCat == true
+                  ? "bg-gray-600 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%] text-white animate-bounce"
+                  : "bg-gray-400 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%]"
+              }
+            >
+              Manage Category
+            </button>
+            <button
+              onClick={() => handleManageItemClick()}
+              className={
+                showManageItem == true
+                  ? "bg-gray-600 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%] text-white animate-bounce"
+                  : "bg-gray-400 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%]"
+              }
+            >
+              Manage Item
+            </button>
+          </div>
+          <div className="w-full flex justify-center self-center">
+            {showManageCat ? <ManageCat /> : null}
+            {showManageItem ? <ManageItem /> : null}
+          </div>
         </div>
       </div>
       <Footer />

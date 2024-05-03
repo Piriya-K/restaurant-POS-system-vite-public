@@ -58,33 +58,34 @@ const ManageCat = () => {
   };
 
   return (
-    <div className="panel my-5 mx-10 px-5 py-2 border border-dashed border-black h-96">
+    <div className="manage-main-dialog-box">
       <div>
         <h1>Edit Category</h1>
-        <div className="py-2">
-          <button
-            className="bg-gray-400 rounded-md px-4"
-            onClick={(e) => showModalCategory(null, e)}
-          >
-            Add Category
-          </button>
-        </div>
+        <button
+          className="add-button"
+          onClick={(e) => showModalCategory(null, e)}
+        >
+          Add Category
+        </button>
       </div>
-      <div className="overflow-y-scroll max-h-60">
+      <div className="content-dialog-box">
         {category.map((eachCategory) => (
-          <div className="grid grid-cols-3 gap-5 my-2" key={eachCategory._id}>
-            <p>{eachCategory.categoryName}</p>
+          <div
+            className="manage-category-content-row-styling"
+            key={eachCategory._id}
+          >
+            <p className="col-span-2">{eachCategory.categoryName}</p>
             <div className="w-full flex justify-center">
               <button
                 onClick={(e) => showModalCategory(eachCategory, e)}
-                className="bg-gray-400 rounded-md px-4"
+                className="edit-btn"
               >
                 EDIT
               </button>
             </div>
-            <div className="w-full flex justify-center">
+            <div className="delete-btn-outer-div">
               <button
-                className="bg-red-400 rounded-md px-2"
+                className="delete-btn"
                 onClick={(e) => showModalCategory(eachCategory, e)}
               >
                 DELETE

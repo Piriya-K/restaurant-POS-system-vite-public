@@ -15,6 +15,8 @@ const Table = () => {
   });
   const { table1, setTable1 } = useContext(Appcontext);
   const { table2, setTable2 } = useContext(Appcontext);
+  const { tables, setTables } = useContext(Appcontext);
+
   const { userToken } = useContext(Appcontext);
 
   const clickTable = (clickedTable) => {
@@ -28,8 +30,32 @@ const Table = () => {
 
   const tableItem = (list, selectedTable) => {
     selectedTable.tableNum == 1
-      ? setTable1({ ...table1, itemlist: list })
-      : setTable2({ ...table2, itemlist: list });
+      ? setTable1((prevTable1) => {
+          const updatedTable1 = { ...prevTable1, itemlist: list };
+          console.log(`table1 is ${updatedTable1}`);
+          setTables((prevTables) => {
+            const updatedTables = { ...prevTables, table1: updatedTable1 };
+            console.log(`updatedTables is ${updatedTables}`);
+            localStorage.setItem("tables", JSON.stringify(updatedTables));
+            return updatedTables;
+          });
+          return updatedTable1;
+        })
+      : setTable2((prevTable2) => {
+          const updatedTable2 = { ...prevTable2, itemlist: list };
+          console.log(`table2 is ${updatedTable2}`);
+          setTables((prevTables) => {
+            const updatedTables = { ...prevTables, table2: updatedTable2 };
+            console.log(`updatedTables is ${updatedTables}`);
+            localStorage.setItem("tables", JSON.stringify(updatedTables));
+            return updatedTables;
+          });
+          return updatedTable2;
+        });
+
+    console.log(
+      `Inside local storage, tables is ${JSON.parse(localStorage.tables)}`
+    );
   };
 
   useEffect(() => {
@@ -38,8 +64,8 @@ const Table = () => {
 
   return (
     <>
-      <div className="h-screen">
-        <NavBar />
+      <NavBar />
+      <div className="h-[76dvh] bg-slate-500">
         {tableOpened ? (
           <OrderPage
             clickBack={clickBack}
@@ -53,8 +79,8 @@ const Table = () => {
             clickTable={clickTable}
           />
         )}
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

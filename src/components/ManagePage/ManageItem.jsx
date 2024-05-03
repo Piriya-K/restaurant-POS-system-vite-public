@@ -72,48 +72,42 @@ const ManageItem = () => {
   };
 
   return (
-    <div className="panel my-5 mx-10 px-5 py-2 border border-dashed border-black h-96 ">
+    <div className="manage-main-dialog-box">
       <div>
         <h1>Edit Item</h1>
-        <div className="py-2 gap-2 flex">
-          <button
-            className="bg-gray-400 rounded-md px-4"
-            onClick={(e) => showModalItem(null, e)}
-          >
-            Add Item
-          </button>
-        </div>
+        <button className="add-button" onClick={(e) => showModalItem(null, e)}>
+          Add Item
+        </button>
       </div>
-      <div className="overflow-y-scroll max-h-80">
+
+      <div className="content-dialog-box">
         {item.map((eachItem, index) => (
-          <div key={index}>
-            <div className="grid grid-cols-5 gap-5 my-2">
-              <p>{eachItem.itemName}</p>
-              <p>
-                {category &&
-                  category
-                    .filter((cat) => cat._id === eachItem.categoryId)
-                    .map((cat) => (
-                      <span key={cat._id}>{cat.categoryName}</span>
-                    ))}
-              </p>
-              <p className="text-center">${eachItem.itemPrice}</p>
-              <div className="w-full flex justify-center">
-                <button
-                  onClick={(e) => showModalItem(eachItem, e)}
-                  className="bg-gray-400 rounded-md px-4"
-                >
-                  EDIT
-                </button>
-              </div>
-              <div className="w-full flex justify-center">
-                <button
-                  onClick={(e) => showModalItem(eachItem, e)}
-                  className="bg-red-400 rounded-md px-2"
-                >
-                  DELETE
-                </button>
-              </div>
+          <div key={index} className="manage-item-content-row-styling">
+            <p className="col-span-2">{eachItem.itemName}</p>
+            <p>
+              {category &&
+                category
+                  .filter((cat) => cat._id === eachItem.categoryId)
+                  .map((cat) => <span key={cat._id}>{cat.categoryName}</span>)}
+            </p>
+            <div className="flex justify-center">
+              <p className="text-left w-[50%]">${eachItem.itemPrice}</p>
+            </div>
+            <div className="w-full flex justify-center">
+              <button
+                onClick={(e) => showModalItem(eachItem, e)}
+                className="edit-btn"
+              >
+                EDIT
+              </button>
+            </div>
+            <div className="delete-btn-outer-div">
+              <button
+                onClick={(e) => showModalItem(eachItem, e)}
+                className="delete-btn"
+              >
+                DELETE
+              </button>
             </div>
           </div>
         ))}

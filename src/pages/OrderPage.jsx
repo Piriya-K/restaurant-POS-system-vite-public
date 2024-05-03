@@ -1,9 +1,10 @@
 import LeftPanel from "../components/OrderPage/LeftPanel";
 import RightPanel from "../components/OrderPage/RightPanel";
 import CenterPanel from "../components/OrderPage/CenterPanel";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useReactToPrint } from "react-to-print";
 import ItemListPrinting from "../components/ItemListPrinting";
+import { Appcontext } from "../App";
 
 const OrderPage = ({ clickBack, table, tableItem }) => {
   //list of items that have been selected in CenterPanel.jsx
@@ -70,35 +71,35 @@ const OrderPage = ({ clickBack, table, tableItem }) => {
 
   return (
     <>
-      <div className="text-xs h-5/6">
+      <div className="flex flex-col h-full">
         <div className="pt-4 pl-4">
-          <span>{`TABLE: ${table.tableNum}`}</span>
+          <span className="text-white pr-5">{`TABLE: ${table.tableNum}`}</span>
           <button
-            className="border border-blue-400 p-1 mx-1 mt-1 rounded-md"
+            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
             onClick={() => handleBackBtn()}
           >
-            BACK
+            Back
           </button>
           <button
-            className="border border-green-300 p-1 mx-1 mt-1 rounded-md"
+            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
             onClick={() => saveItemList(itemlist, table)}
           >
             Save Order
           </button>
           <button
-            className="border border-red-300 p-1 mx-1 mt-1 rounded-md"
+            className="bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
             onClick={() => handlePrint(null, () => contentToPrint.current)}
           >
             Print to Kitchen
           </button>
           <button
-            className="border border-yellow-300 p-1 mx-1 mt-1 rounded-md"
+            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
             onClick={() => handleCheckout(itemlist, table)}
           >
             Checkout
           </button>
         </div>
-        <div className="grid grid-cols-3 flex-1 gap-8 p-5">
+        <div className="grid grid-cols-3 flex-1 gap-8 p-5 h-[80%]">
           <LeftPanel onCategoryClick={handleMenuClick} />
           <CenterPanel
             selectedMenu={selectedMenu}

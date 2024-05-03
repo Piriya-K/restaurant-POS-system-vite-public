@@ -20,8 +20,8 @@ const AddCategoryDialog = ({ isOpen, onClose, addCategoryName }) => {
   return (
     <Dialog className="relative z-50" open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <Dialog.Panel className="dialog-panel bg-gray-500 p-10">
+      <div className="dialog-panel-bg">
+        <Dialog.Panel className="dialog-panel-category">
           <Dialog.Title className="pb-5">Add a Category</Dialog.Title>
           <label htmlFor="catNameInput">
             Name:{" "}
@@ -37,33 +37,28 @@ const AddCategoryDialog = ({ isOpen, onClose, addCategoryName }) => {
               }}
             />
           </label>
-          <br />
-          <button
-            className="dialog-button mr-3 px-2"
-            onClick={() => {
-              document.getElementById("catNameInput").value.length > 0
-                ? handleAddCategory(
-                    document.getElementById("catNameInput").value,
-                    userToken
-                  )
-                : (((document.getElementById("catNameInput").className =
-                    "bg-red-300"),
-                  document.getElementById("catNameInput").focus()),
-                  setAddResponse("Category name cannot be empty!"));
-            }}
-          >
-            Save
-          </button>
-          <button className="dialog-button px-5" onClick={onClose}>
-            Cancel
-          </button>
-          {addResponse && (
-            <>
-              <br />
-              <br />
-              <p>{addResponse}</p>
-            </>
-          )}
+          <div className="outer-div-dialog-buttons">
+            <button
+              className="dialog-button"
+              onClick={() => {
+                document.getElementById("catNameInput").value.length > 0
+                  ? handleAddCategory(
+                      document.getElementById("catNameInput").value,
+                      userToken
+                    )
+                  : (((document.getElementById("catNameInput").className =
+                      "bg-red-300"),
+                    document.getElementById("catNameInput").focus()),
+                    setAddResponse("Category name cannot be empty!"));
+              }}
+            >
+              Save
+            </button>
+            <button className="dialog-button" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
+          {addResponse && <p className="dialog-response">{addResponse}</p>}
         </Dialog.Panel>
       </div>
     </Dialog>

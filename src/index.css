@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.2dvw;
 }
 
 code {
@@ -16,16 +17,30 @@ code {
     monospace;
 }
 
+input {
+  caret-color: transparent;
+  width: 15dvw;
+  min-width: 5dvw;
+  height: auto;
+}
+
+select {
+  width: 15dvw;
+  min-width: 5dvw;
+  height: auto;
+}
+
 .panel {
   @apply  shadow-md shadow-slate-600 rounded-md bg-slate-300;
 }
 
 .panel-inner {
-  @apply grid grid-cols-2 gap-2 m-2 content-start;
+  @apply grid grid-cols-2 gap-2 m-5 content-start pr-2 overflow-y-scroll h-[55dvh];
+  /* @apply flex flex-wrap flex-auto gap-2 m-5 content-start overflow-y-scroll h-[55dvh]; */
 }
 
 .panel-button {
-  @apply rounded-md shadow-md h-10 font-semibold;
+  @apply rounded-md shadow-md py-2 font-semibold;
 }
 
 .panel-button-blue {
@@ -36,19 +51,76 @@ code {
   @apply bg-yellow-200;
 }
 
-.dialog-panel {
-  @apply shadow-lg rounded-md;
+/* Navbar */
+
+.navbar-button {
+  @apply flex flex-col flex-wrap justify-center w-[20dvh] text-center transition-all duration-300 hover:bg-gray-400 hover:shadow-md hover:text-white hover:text-xl
+}
+
+/* ManageCat, ManageItem */
+
+.manage-main-dialog-box {
+  @apply panel my-5 mx-10 px-5 py-2 h-[60dvh] w-[60dvw]
+}
+
+.add-button {
+  @apply bg-gray-400 rounded-md px-4 text-white my-2
+}
+
+.content-dialog-box {
+  @apply overflow-y-scroll h-[48dvh] border-2 border-gray-600 border-solid bg-gray-200
+}
+
+.manage-item-content-row-styling {
+  @apply grid grid-cols-6 gap-5 p-2 odd:bg-slate-100 
+}
+
+.manage-category-content-row-styling {
+  @apply grid grid-cols-4 gap-5 p-2 odd:bg-slate-100
+}
+
+.edit-btn {
+  @apply bg-gray-400 rounded-md px-4
+}
+
+.delete-btn-outer-div {
+  @apply w-full flex justify-center
+}
+
+.delete-btn {
+  @apply bg-red-400 rounded-md px-2
+}
+
+/* Add, Edit, Delete Dialog */
+
+.dialog-panel-bg {
+  @apply fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-80
+}
+
+.dialog-panel-category {
+  @apply shadow-lg rounded-md bg-gray-500 p-10 
+  h-[30dvh] w-[25dvw]
+}
+
+.dialog-panel-item {
+  @apply shadow-lg rounded-md bg-gray-500 p-10 
+  /* h-auto w-auto */
+  h-[55dvh] w-[25dvw]
+}
+
+.outer-div-dialog-buttons {
+  @apply flex justify-center gap-5 basis-full flex-auto
 }
 
 .dialog-button {
-  @apply shadow-lg rounded-md bg-white py-1 text-xs mt-2;
+  @apply rounded-md bg-white min-w-[5dvw] mt-6 h-auto hover:scale-125 transition-all;
 }
 
-.navbar-button {
-  @apply bg-slate-400 self-center rounded-md p-1
+.dialog-response {
+  @apply text-center mt-5
 }
 
-/* width */
+  /* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -67,4 +139,24 @@ code {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+@media all and (max-device-width: 430px) {
+  body {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  #table {
+    width: 30dvw;
+  }
+
+  #page-selector {
+    display: grid;
+    justify-items: center;
+  }
+
+  .navbar-button {
+    @apply w-[25dvw] h-[8dvh] text-center
+  }
 }

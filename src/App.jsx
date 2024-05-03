@@ -24,8 +24,24 @@ function App() {
   const [imageFile, setImageFile] = useState(
     user ? `${import.meta.env.VITE_API_URL}images/${user.imageFile}` : null
   );
-  const [table1, setTable1] = useState({ tableNum: 1, itemlist: [] });
-  const [table2, setTable2] = useState({ tableNum: 2, itemlist: [] });
+  const [table1, setTable1] = useState({
+    tableNum: 1,
+    itemlist:
+      (localStorage.tables &&
+        JSON.parse(localStorage.tables).table1 &&
+        JSON.parse(localStorage.tables).table1.itemlist) ||
+      [],
+  });
+  const [table2, setTable2] = useState({
+    tableNum: 2,
+    itemlist:
+      (localStorage.tables &&
+        JSON.parse(localStorage.tables).table2 &&
+        JSON.parse(localStorage.tables).table2.itemlist) ||
+      [],
+  });
+
+  const [tables, setTables] = useState({ table1, table2 });
 
   const navigate = useNavigate();
 
@@ -33,6 +49,7 @@ function App() {
     const fetchData = async () => {
       const categoryData = await fetchCategoryData();
       const itemData = await fetchItemData();
+      // const tablesData = await getTableData();
 
       setCategory(categoryData);
       setItem(itemData);
@@ -62,6 +79,9 @@ function App() {
 
     fetchData();
 
+    /* Add table instances to localStorage */
+    localStorage.setItem("tables", JSON.stringify(tables));
+
     return () => clearInterval(tokenExpInterval);
   }, [userToken]);
 
@@ -90,6 +110,8 @@ function App() {
         setTable2,
         userToken,
         setUserToken,
+        tables,
+        setTables,
       }}
     >
       <Routes>

@@ -11,7 +11,7 @@ const CenterPanel = ({ selectedMenu, onItemClick }) => {
   return (
     <div className="panel">
       {selectedMenu ? (
-        <div className="panel-inner overflow-y-scroll h-[20rem]">
+        <div className="panel-inner">
           {item.map((eachItem, index) =>
             eachItem.categoryId === selectedMenu._id ? (
               <button
@@ -26,7 +26,7 @@ const CenterPanel = ({ selectedMenu, onItemClick }) => {
           )}
         </div>
       ) : (
-        <p className="w-full">No menu category selected</p>
+        <p className="w-full m-5">No menu category selected</p>
       )}
     </div>
   );

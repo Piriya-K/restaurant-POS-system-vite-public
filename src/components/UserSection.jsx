@@ -9,7 +9,7 @@ const UserSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleSignOut = () => {
     setUser(null);
-    localStorage.removeItem("userToken");
+    localStorage.clear();
   };
 
   const showModalEditProfile = () => {
@@ -28,27 +28,27 @@ const UserSection = () => {
         </div>
         <div id="user-info" className=" pl-2">
           <div id="user-greeting" className="">
-            <p>
+            <p className="">
               Hello,
               <span className="text-blue-400">
                 {user ? " " + user.userName : null}
               </span>
             </p>
           </div>
-          <div id="user-option" className="flex gap-2 justify-around text-xs">
+          <div id="user-option" className="flex gap-2 justify-around">
             <Link
               to="#"
-              className="hover:underline italic"
+              className="hover:underline hover:scale-110 duration-300"
               onClick={() => showModalEditProfile()}
             >
-              edit profile
+              My Profile
             </Link>
             <Link
               to="/login"
-              className="hover:underline italic"
+              className="hover:underline duration-300 hover:scale-110"
               onClick={handleSignOut}
             >
-              sign out
+              Sign Out
             </Link>
           </div>
         </div>
