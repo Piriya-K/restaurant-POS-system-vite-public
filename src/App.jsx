@@ -79,9 +79,6 @@ function App() {
 
     fetchData();
 
-    /* Add table instances to localStorage */
-    localStorage.setItem("tables", JSON.stringify(tables));
-
     return () => clearInterval(tokenExpInterval);
   }, [userToken]);
 

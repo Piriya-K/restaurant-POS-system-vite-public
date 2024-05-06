@@ -60,7 +60,7 @@ const EditCategoryDialog = ({
                   : (((document.getElementById("catNameInput").className =
                       "bg-red-300"),
                     document.getElementById("catNameInput").focus()),
-                    setEditResponse("Category name cannot be empty!"));
+                    setEditResponse("Name can't be empty!"));
               }}
             >
               Save

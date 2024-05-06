@@ -1,8 +1,9 @@
 import { Dialog } from "@headlessui/react";
 import editUser from "../../services/editUser";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Appcontext } from "../../App";
 import bcrypt from "bcryptjs";
+import checkDuplicateUsername from "../../services/checkDuplicateUsername";
 
 const EditProfileDialog = ({ isOpen, onClose }) => {
   const [editResponse, setEditResponse] = useState("");
@@ -11,7 +12,6 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
   const { user, setUser } = useContext(Appcontext);
   const { userToken } = useContext(Appcontext);
   const [submitDisabled, setSubmitDisabled] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const uploadImage = async (file) => {
     try {
@@ -29,30 +29,61 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
     }
   };
 
-  const checkUsername = async (e) => {
+  const checkUsername = async () => {
     const password = document.getElementById("passWordInput").value;
     const confirmation = document.getElementById("confirmation").value;
-
-    e.preventDefault();
-    setErrorMessage("");
     const username = document.getElementById("userNameInput").value;
+    const usernameLength = username.length;
 
-    try {
-      if (username.length > 0) {
-      } else {
-        setErrorMessage("Username cannot be empty!");
-        setSubmitDisabled(true);
-      }
+    console.log(`length is ${usernameLength}`);
 
-      if (password != confirmation) {
-        setErrorMessage("Please enter the same password!");
-        setSubmitDisabled(true);
-      } else {
-        setErrorMessage("");
-        setSubmitDisabled(false);
+    setEditResponse("");
+
+    if (usernameLength > 0) {
+      try {
+        const userNameCheckResponse = await checkDuplicateUsername(username);
+
+        //When the user edited the username input field, but then wants to retain the current username, the username is valid only if the password tied to the username found in the db is the same as the password in the JWT of the current session
+        const sameUserName =
+          userNameCheckResponse != null &&
+          userNameCheckResponse != undefined &&
+          userNameCheckResponse.password == user.password &&
+          userNameCheckResponse.userName == user.userName;
+        //a username is not a duplicate if userNameCheckResponse returns "null" or "undefined" (the username is not found in the database)
+        const duplicateUsername =
+          userNameCheckResponse != null &&
+          userNameCheckResponse != undefined &&
+          !sameUserName;
+
+        //password and confirmation input fields has to have the same input values
+        const samePassword = password === confirmation;
+
+        if (!sameUserName) {
+          setEditResponse("Username taken!");
+          setSubmitDisabled(true);
+        } else if (duplicateUsername) {
+          setEditResponse("Username taken!");
+          setSubmitDisabled(true);
+        }
+
+        if (!samePassword && confirmation.length < 1) {
+          setEditResponse("Please reenter the same password!");
+          setSubmitDisabled(true);
+        } else if (!samePassword && confirmation.length > 0) {
+          setEditResponse("Please enter the same password!");
+          setSubmitDisabled(true);
+        }
+
+        if ((sameUserName || !duplicateUsername) && samePassword) {
+          setEditResponse("");
+          setSubmitDisabled(false);
+        }
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
+    } else if (username.length < 1) {
+      setEditResponse("Username can't be empty!");
+      setSubmitDisabled(true);
     }
   };
 
@@ -64,17 +95,20 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
     imageFile,
     userToken
   ) => {
-    if (userName.length < 1) {
-      setErrorMessage("Username cannot be empty!");
-      setSubmitDisabled(true);
-    }
-
-    //if user did not enter an input for password, use password from user instead
+    //if user did not enter an input for password, assign the hashed password to the password variable
     if (password.length < 1 && confirmation.length < 1) {
-      password = user.password;
-    } else {
+      password = user.password; //user.password is already hashed, can be assigned to the "password" variable directly
+      console.log(`password is `);
+    } else if (
+      password.length > 0 &&
+      confirmation.length > 0 &&
+      password == confirmation
+    ) {
       password = await bcrypt.hash(password, 10);
     }
+
+    // console.log(`userName is ${userName}`);
+    // console.log(`password is ${password}`);
 
     try {
       const editUserResponse = await editUser(
@@ -85,17 +119,20 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
         userToken
       );
 
-      Object.keys(editUserResponse).length > 1
-        ? window.alert("Update Successful!")
-        : window.alert("Update Unsuccessful!");
+      console.log(`editUserResponse is ${JSON.stringify(editUserResponse)}`);
 
-      setUser({
-        _id: userId,
-        userName: userName,
-        password: password,
-        imageFile: imageFile,
-        __v: 0,
-      });
+      Object.keys(editUserResponse).length > 1
+        ? (setEditResponse("Update Successful!"),
+          setUser((prevUser) => {
+            const updatedUser = {
+              ...prevUser,
+              userName: userName,
+              password: password,
+              imageFile: imageFile,
+            };
+            return updatedUser;
+          }))
+        : setEditResponse("Update Unsuccessful!");
     } catch (err) {
       setEditResponse(`error from EditProfileDialog ${err.message} + ${err}`);
     }
@@ -104,106 +141,112 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
   return (
     <Dialog className="relative z-50" open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <Dialog.Panel className="dialog-panel bg-gray-500 p-10">
-          <Dialog.Title className="pb-5">Edit Profile</Dialog.Title>
-          <span className="flex justify-center text-red-400" id="response">
-            {errorMessage}
-          </span>
-          <label>Username: </label>
-          <br />
-          <input
-            id="userNameInput"
-            type="text"
-            defaultValue={user.userName}
-            onClick={() => {
-              (document.getElementById("userNameInput").className = "bg-white"),
-                setEditResponse("");
-            }}
-            autoComplete="off"
-            onChange={checkUsername}
-            size={25}
-            min={1}
-          />
-          <br />
-          <label>New Password: </label>
-          <br />
-          <input
-            id="passWordInput"
-            type="text"
-            className=""
-            autoComplete="off"
-            placeholder="skip to use current password"
-            size={25}
-            onChange={checkUsername}
-          />
-          <br />
-          <label>Reenter New Password: </label>
-          <br />
-          <input
-            id="confirmation"
-            type="text"
-            className="confirmation"
-            autoComplete="off"
-            placeholder="skip to use current password"
-            size={25}
-            onChange={checkUsername}
-          />
-          <br />
-          <div className="mt-2">
-            <label>Profile Picture: </label>
-            <span className="flex">
-              <img src={imageFile} className="max-w-10 max-h-10" />
-              <input
-                id="profilePicture"
-                type="file"
-                className="border border-solid align-middle"
-                accept="image/*,.pdf,.jpg,.jpeg,.png"
-              />
-            </span>
+      <div className="dialog-panel-bg">
+        <Dialog.Panel className="dialog-panel-profile">
+          <div className="flex flex-col">
+            <div className="self-center">
+              <Dialog.Title className="pb-5">Edit Profile</Dialog.Title>
+              <label>
+                Username:
+                <br />
+                <input
+                  id="userNameInput"
+                  type="text"
+                  defaultValue={user.userName}
+                  autoComplete="off"
+                  onChange={checkUsername}
+                  size={25}
+                  min={1}
+                />
+              </label>
+              <div className="mt-2">
+                <label>
+                  New Password:
+                  <br />
+                  <input
+                    id="passWordInput"
+                    type="text"
+                    className=""
+                    autoComplete="off"
+                    size={25}
+                    onChange={checkUsername}
+                  />
+                </label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  Re-enter New Password:
+                  <br />
+                  <input
+                    id="confirmation"
+                    type="text"
+                    className="confirmation"
+                    autoComplete="off"
+                    size={25}
+                    onChange={checkUsername}
+                  />
+                </label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  Profile Picture:
+                  <span className="flex flex-col">
+                    <img
+                      src={imageFile}
+                      className="max-w-20 max-h-20 min-w-8 min-h-8"
+                    />
+                    <input
+                      id="profilePicture"
+                      type="file"
+                      className="border border-solid align-middle"
+                      accept="image/*,.pdf,.jpg,.jpeg,.png"
+                    />
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div className="outer-div-dialog-buttons">
+              <button
+                className="dialog-button"
+                onClick={() => {
+                  const userName =
+                    document.getElementById("userNameInput").value;
+                  const password =
+                    document.getElementById("passWordInput").value;
+                  const confirmation =
+                    document.getElementById("confirmation").value;
+                  //index 0 is the position of the "file" object being uploaded. The "name" field is where the file name is
+                  const file =
+                    document.querySelector("input[type=file]").files[0];
+                  !(file == null)
+                    ? (uploadImage(file),
+                      handleEditProfile(
+                        userName,
+                        password,
+                        confirmation,
+                        user._id,
+                        file.name,
+                        userToken
+                      ))
+                    : handleEditProfile(
+                        userName,
+                        password,
+                        confirmation,
+                        user._id,
+                        user.imageFile,
+                        userToken
+                      );
+                }}
+                disabled={submitDisabled}
+              >
+                Save
+              </button>
+              <button className="dialog-button" onClick={onClose}>
+                Cancel
+              </button>
+            </div>
+            {editResponse && <p className="dialog-response">{editResponse}</p>}
           </div>
-          <button
-            className="dialog-button mr-3 px-2"
-            onClick={() => {
-              const userName = document.getElementById("userNameInput").value;
-              const password = document.getElementById("passWordInput").value;
-              const confirmation =
-                document.getElementById("confirmation").value;
-              //index 0 is the position of the "file" object being uploaded. The "name" field is where the file name is
-              const file = document.querySelector("input[type=file]").files[0];
-              !(file == null)
-                ? (uploadImage(file),
-                  handleEditProfile(
-                    userName,
-                    password,
-                    confirmation,
-                    user._id,
-                    file.name,
-                    userToken
-                  ))
-                : handleEditProfile(
-                    userName,
-                    password,
-                    confirmation,
-                    user._id,
-                    user.imageFile,
-                    userToken
-                  );
-            }}
-            disabled={submitDisabled}
-          >
-            Save
-          </button>
-          <button className="dialog-button px-5" onClick={onClose}>
-            Cancel
-          </button>
-          {editResponse && (
-            <>
-              <br />
-              <br />
-              <p>{editResponse}</p>
-            </>
-          )}
         </Dialog.Panel>
       </div>
     </Dialog>

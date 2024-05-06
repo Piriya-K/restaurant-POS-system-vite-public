@@ -49,7 +49,7 @@ const AddCategoryDialog = ({ isOpen, onClose, addCategoryName }) => {
                   : (((document.getElementById("catNameInput").className =
                       "bg-red-300"),
                     document.getElementById("catNameInput").focus()),
-                    setAddResponse("Category name cannot be empty!"));
+                    setAddResponse("Name can't be empty!"));
               }}
             >
               Save

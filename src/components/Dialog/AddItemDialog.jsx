@@ -38,11 +38,11 @@ const AddItemDialog = ({ isOpen, onClose, addItemToList, category }) => {
       : itemName.length > 0 && itemPrice.length < 1
       ? (((document.getElementById("itemPriceInput").className = "bg-red-300"),
         document.getElementById("itemPriceInput").focus()),
-        setAddResponse("Item price cannot be empty!"))
+        setAddResponse("Price can't be empty!"))
       : itemName.length < 1 && itemPrice.length > 0
       ? (((document.getElementById("itemNameInput").className = "bg-red-300"),
         document.getElementById("itemNameInput").focus()),
-        setAddResponse("Item name cannot be empty!"))
+        setAddResponse("Name can't be empty!"))
       : (((document.getElementById("itemNameInput").className = "bg-red-300"),
         (document.getElementById("itemPriceInput").className = "bg-red-300")),
         setAddResponse("Inputs can't be empty!"));

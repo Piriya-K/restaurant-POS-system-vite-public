@@ -10,10 +10,9 @@ const Register = () => {
   const [submitDisabled, setSubmitDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const checkUsername = async (e) => {
+  const checkUsername = async () => {
     let userNameCheckResponse = null;
 
-    e.preventDefault();
     setErrorMessage("");
     const username = document.getElementById("username").value;
     const pass1 = document.getElementById("password").value;
@@ -23,19 +22,19 @@ const Register = () => {
       if (username.length > 0) {
         userNameCheckResponse = await checkDuplicateUsername(username);
       } else {
-        setErrorMessage("Username cannot be empty!");
+        setErrorMessage("Username can't be empty!");
         setSubmitDisabled(true);
       }
 
       if (userNameCheckResponse != null && userNameCheckResponse != undefined) {
-        setErrorMessage("USERNAME TAKEN!");
+        setErrorMessage("Username taken!");
         setSubmitDisabled(true);
       } else if (
         userNameCheckResponse != null &&
         userNameCheckResponse != undefined &&
         (pass1 == pass2 || pass1 != pass2)
       ) {
-        setErrorMessage("USERNAME TAKEN!");
+        setErrorMessage("Username taken!");
         setSubmitDisabled(true);
       } else if (
         userNameCheckResponse == null &&
@@ -98,73 +97,76 @@ const Register = () => {
           </div>
         </section>
       ) : (
-        <section className="bg-blue-500 h-screen flex flex-col place-content-center">
-          <form className="bg-slate-300 rounded-2xl w-1/4 mx-auto my-0 h-3/4 flex flex-col justify-around">
-            <div>
-              <h1 className="h-full flex justify-center">REGISTER</h1>
-              <span className="flex justify-center text-red-600" id="response">
+        <section className="bg-blue-500 h-screen flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center">
+            <form className="bg-slate-300 rounded-2xl flex flex-col justify-center items-center w-[30dvw] h-[60dvh]">
+              <h1 className="">REGISTER</h1>
+              <p
+                className="text-red-600 h-[5dvh] bg-green-300 w-auto flex justify-center items-center"
+                id="response"
+              >
                 {errorMessage}
-              </span>
-            </div>
-            <div className="text-sm sm:text-base self-center">
-              <label htmlFor="username">Username: </label>
-              <br />
-              <input
-                id="username"
-                autoComplete="off"
-                type="text"
-                required
-                className="rounded-lg border border-black"
-                onChange={checkUsername}
-              />
-              <br />
-              <br />
-              <label htmlFor="password">Password: </label>
-              <br />
-              <input
-                id="password"
-                autoComplete="off"
-                type="text"
-                required
-                className="rounded-lg border border-black"
-                onChange={checkUsername}
-              />
-              <br />
-              <br />
-              <label htmlFor="confirm">Password Confirmation: </label>
-              <br />
-              <input
-                id="confirm"
-                autoComplete="off"
-                type="text"
-                required
-                className="rounded-lg border border-black"
-                onChange={checkUsername}
-              />
-              <br />
-              <br />
-              <div className="flex justify-center">
-                <button
-                  ahref="#"
-                  className="border rounded-lg w-2/3 bg-emerald-500 py-1 text-white"
-                  onClick={handleSubmit}
-                  id="submitBtn"
-                  disabled={submitDisabled}
-                >
-                  Register
-                </button>
+              </p>
+              <div className="self-center">
+                <label htmlFor="username">Username: </label>
+                <br />
+                <input
+                  id="username"
+                  autoComplete="off"
+                  type="text"
+                  required
+                  className="rounded-lg border border-black"
+                  onChange={checkUsername}
+                />
+                <br />
+                <br />
+                <label htmlFor="password">Password: </label>
+                <br />
+                <input
+                  id="password"
+                  autoComplete="off"
+                  type="text"
+                  required
+                  className="rounded-lg border border-black"
+                  onChange={checkUsername}
+                />
+                <br />
+                <br />
+                <label htmlFor="confirm">Password Confirmation: </label>
+                <br />
+                <input
+                  id="confirm"
+                  autoComplete="off"
+                  type="text"
+                  required
+                  className="rounded-lg border border-black"
+                  onChange={checkUsername}
+                />
+                <br />
+                <br />
+                <div className="flex justify-center">
+                  <button
+                    ahref="#"
+                    className="border rounded-lg w-[10dvw] h-[5dvh] bg-emerald-500 text-white"
+                    onClick={handleSubmit}
+                    id="submitBtn"
+                    disabled={submitDisabled}
+                  >
+                    Register
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
-          <br />
-          <p className="text-center text-xs">
-            Already registered?{" "}
-            {
-              <Link to="/login" className="text-emerald-500">
-                Sign-In Here!
-              </Link>
-            }
-          </p>
+            </form>
+            <br />
+            <p>
+              Already registered?{" "}
+              {
+                <Link to="/login" className="text-emerald-500">
+                  Sign-In Here!
+                </Link>
+              }
+            </p>
+          </div>
         </section>
       )}
     </>

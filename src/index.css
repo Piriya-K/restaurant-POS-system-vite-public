@@ -22,6 +22,7 @@ input {
   width: 15dvw;
   min-width: 5dvw;
   height: auto;
+  padding-left: 1px;
 }
 
 select {
@@ -91,7 +92,7 @@ select {
   @apply bg-red-400 rounded-md px-2
 }
 
-/* Add, Edit, Delete Dialog */
+/* Item and Category Dialog Styling */
 
 .dialog-panel-bg {
   @apply fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-80
@@ -119,6 +120,14 @@ select {
 .dialog-response {
   @apply text-center mt-5
 }
+
+  /* Profile Dialog Styling */
+  .dialog-panel-profile {
+    @apply shadow-lg rounded-md bg-gray-500 p-10 
+    h-auto
+    w-auto
+    /* h-[55dvh] */
+  }
 
   /* width */
 ::-webkit-scrollbar {

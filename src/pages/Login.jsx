@@ -12,6 +12,7 @@ const Login = () => {
   const { setImageFile } = useContext(Appcontext);
   const { setUserToken } = useContext(Appcontext);
   const navigate = useNavigate();
+  let errorMessage;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,57 +42,59 @@ const Login = () => {
   };
 
   return (
-    <section className="bg-blue-500 h-screen flex flex-col place-content-center">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-slate-300 rounded-2xl w-1/4 mx-auto my-0 h-3/4 flex flex-col justify-evenly items-center"
-      >
-        <div className="flex flex-col items-center">
+    <section className="bg-blue-500 h-screen flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-slate-300 rounded-2xl flex flex-col justify-center items-center w-[30dvw] h-[60dvh]"
+        >
           <h1>SIGN-IN</h1>
-          <span className="flex" id="message"></span>
-        </div>
-        <div className="text-sm sm:text-base self-center">
-          <label htmlFor="username">Username: </label>
-          <br />
-          <input
-            id="username"
-            autoComplete="off"
-            type="text"
-            required
-            className="rounded-lg border border-black"
-          />
-          <br />
-          <br />
-          <label htmlFor="password">Password: </label>
-          <br />
-          <input
-            id="password"
-            autoComplete="off"
-            type="text"
-            required
-            className="rounded-lg border border-black"
-          />
-          <br />
-          <br />
-          <div className="flex justify-center">
-            <button className="border rounded-lg w-2/3 bg-emerald-500 py-1 text-white">
-              Submit
-            </button>
+          <p
+            className="text-red-600 h-[5dvh] w-auto flex justify-center items-center"
+            id="message"
+          >
+            {errorMessage}
+          </p>
+          <div className="self-center">
+            <label htmlFor="username">Username: </label>
+            <br />
+            <input
+              id="username"
+              autoComplete="off"
+              type="text"
+              required
+              className="rounded-lg border border-black"
+            />
+            <br />
+            <br />
+            <label htmlFor="password">Password: </label>
+            <br />
+            <input
+              id="password"
+              autoComplete="off"
+              type="text"
+              required
+              className="rounded-lg border border-black"
+            />
+            <br />
+            <br />
+            <div className="flex justify-center">
+              <button className="border rounded-lg w-[10dvw] h-[5dvh] bg-emerald-500 text-white">
+                Submit
+              </button>
+            </div>
           </div>
-          <span className="flex justify-center"></span>
-          <div id="signInDiv" className="flex justify-center"></div>
-          <br />
-        </div>
-      </form>
-      <br />
-      <p className="text-center text-xs">
-        Don't have an account?{" "}
-        {
-          <Link to="/register" className="text-emerald-500">
-            Register Here!
-          </Link>
-        }
-      </p>
+        </form>
+        <br />
+        <p>
+          Don't have an account?{" "}
+          {
+            <Link to="/register" className="text-emerald-500">
+              Register Here!
+            </Link>
+          }
+        </p>
+      </div>
     </section>
   );
 };

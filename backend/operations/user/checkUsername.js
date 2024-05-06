@@ -11,7 +11,7 @@ const checkUsername = async (request, response) => {
     try {
       const user = await User.findOne({ userName: request.body.userName });
 
-      console.log(`new user is ${user}`);
+      // console.log(`new user is ${user}`);
 
       if (!user) {
         return response.status(404).json(user);

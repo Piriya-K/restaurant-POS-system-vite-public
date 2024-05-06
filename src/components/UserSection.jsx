@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Appcontext } from "../App";
+import App, { Appcontext } from "../App";
 import { Link } from "react-router-dom";
 import EditProfileDialog from "./Dialog/EditProfileDialog";
 
@@ -7,9 +7,26 @@ const UserSection = () => {
   const { user, setUser } = useContext(Appcontext);
   const { imageFile } = useContext(Appcontext);
   const [isOpen, setIsOpen] = useState(false);
+  const { table1, setTable1 } = useContext(Appcontext);
+  const { table2, setTable2 } = useContext(Appcontext);
+
   const handleSignOut = () => {
     setUser(null);
-    localStorage.clear();
+
+    /* Code to set itemlist property of tables object to an empty array (clear value)*/
+  
+    /*    setTable1((prevTable1) => {
+      const updatedTable1 = { ...prevTable1, itemlist: [] };
+      return updatedTable1;
+    });
+
+    setTable2((prevTable2) => {
+      const updatedTable2 = { ...prevTable2, itemlist: [] };
+      return updatedTable2;
+    });
+*/
+
+    localStorage.removeItem(`userToken`);
   };
 
   const showModalEditProfile = () => {
@@ -24,7 +41,7 @@ const UserSection = () => {
     <>
       <div id="user-section" className="flex ml-4 items-center">
         <div id="user-profile-image" className="">
-          <img src={imageFile} className="max-w-12 max-h-12" />
+          <img src={imageFile} className="w-[5dvw] h-[9dvh]" />
         </div>
         <div id="user-info" className=" pl-2">
           <div id="user-greeting" className="">

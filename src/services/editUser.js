@@ -1,7 +1,7 @@
 const editUser = async (username, pass1, userId, imageFilePath, userToken) => {
   // console.log(`entered editUser`);
   // console.log(`userToken is ${userToken}`);
-  // console.log(`password is ${pass1}`);
+  console.log(`password in backend is ${pass1}`);
 
   try {
     const userResponse = await fetch(
@@ -21,6 +21,7 @@ const editUser = async (username, pass1, userId, imageFilePath, userToken) => {
     );
     const response = await userResponse.json();
     // console.log(`exiting editUser`);
+    
     return response;
   } catch (err) {
     // console.log(`error from editUser ${err.message}`);
