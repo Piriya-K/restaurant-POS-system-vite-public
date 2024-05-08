@@ -391,7 +391,7 @@ select {
 .dialog-panel-profile {
   @apply rounded-md bg-gray-500 p-10 h-auto w-auto
   
-  max-[768px]:text-[2.5dvw]
+  max-[768px]:text-[5dvw]
   min-[769px]:max-[1023px]:text-[2.5dvh]
 }
 
