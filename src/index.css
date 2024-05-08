@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* max-[768px]:
+min-[769px]:max-[1023px]
+min-[1024px]: */
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,9 +22,9 @@ code {
 
 input {
   caret-color: transparent;
-  width: 15dvw;
-  min-width: 5dvw;
-  height: auto;
+  width: 100%;
+  /* min-width: 5dvw; */
+  /* height: 5dvh; */
   padding-left: 1px;
 }
 
@@ -32,16 +35,24 @@ select {
 }
 
 .panel {
-  @apply  shadow-md shadow-slate-600 rounded-md bg-slate-300;
+  @apply bg-slate-300 shadow-md shadow-slate-600 rounded-md 
+
+  max-[768px]:h-[12dvh] max-[768px]:shadow-none max-[768px]:rounded-none max-[768px]:mb-1
+
 }
 
 .panel-inner {
-  @apply grid grid-cols-2 gap-2 m-5 content-start pr-2 overflow-y-scroll h-[55dvh];
-  /* @apply flex flex-wrap flex-auto gap-2 m-5 content-start overflow-y-scroll h-[55dvh]; */
+  @apply 
+  max-[768px]:flex max-[768px]:items-center max-[768px]:pl-2 max-[768px]:gap-2 max-[768px]:overflow-x-auto max-[768px]:w-screen max-[768px]:h-full 
+  
+  min-[769px]:max-[1023px]:grid min-[769px]:max-[1023px]:grid-cols-2 min-[769px]:max-[1023px]:gap-2 min-[769px]:max-[1023px]:m-5 min-[769px]:max-[1023px]:content-start min-[769px]:max-[1023px]:pr-2 min-[769px]:max-[1023px]:overflow-y-auto min-[769px]:max-[1023px]:h-[55dvh]
+
+  min-[1024px]:grid min-[1024px]:grid-cols-2 min-[1024px]:gap-2 min-[1024px]:m-5 min-[1024px]:content-start min-[1024px]:pr-2 min-[1024px]:overflow-y-auto min-[1024px]:h-[55dvh]
 }
 
 .panel-button {
-  @apply rounded-md shadow-md py-2 font-semibold;
+  @apply rounded-md shadow-md py-2 font-semibold
+  max-[768px]:w-[25dvw] max-[768px]:h-[8dvh] max-[768px]:flex-none
 }
 
 .panel-button-blue {
@@ -52,28 +63,197 @@ select {
   @apply bg-yellow-200;
 }
 
+
+/* UserSection.jsx */
+.usersection-div1 {
+  @apply 
+  max-[768px]:flex max-[768px]:items-center
+  min-[769px]:flex min-[769px]:ml-4 min-[769px]:items-center
+  min-[1024px]:flex min-[1024px]:ml-4 min-[1024px]:items-center
+}
+
+.usersection-img {
+  @apply
+  max-[768px]:w-[15dvw] max-[768px]:h-[10dvh]
+
+  min-[769px]:max-[1023px]:w-[15dvw] min-[769px]:max-[1023px]:h-[9dvh]
+  
+  min-[1024px]:w-[5dvw] min-[1024px]:h-[9dvh]
+   
+}
+
+.usersection-div2 {
+  @apply pl-2
+}
+
+.user-greeting {
+  @apply
+  max-[768px]:hidden
+  /* min-[769px]:flex min-[769px]:gap-2
+  min-[1024px]:flex min-[1024px]:gap-2 */
+}
+
+.usersection-username {
+  @apply text-blue-400
+  max-[768px]:text-[3dvh]
+}
+
+.usersection-div3 {
+  @apply   
+  max-[768px]:flex max-[768px]:flex-col
+  min-[769px]:max-[1023px]:flex min-[769px]:max-[1023px]:gap-5 min-[769px]:max-[1023px]:text-[1.5dvh]
+  min-[1024px]:flex min-[1024px]:gap-2
+}
+
+.usersection-link-animation {
+  @apply hover:underline hover:scale-110 duration-300
+}
+
+/* TableSection.jsx */
+.tablesection-div1 {
+  @apply bg-slate-500 
+  max-[768px]:flex max-[768px]:flex-col max-[768px]:justify-evenly max-[768px]:items-center max-[768px]:h-full max-[768px]:w-full
+  
+  min-[769px]:flex min-[769px]:justify-evenly min-[769px]:items-center min-[769px]:h-full min-[769px]:w-full
+  
+  min-[1024px]:flex min-[1024px]:justify-evenly min-[1024px]:items-center min-[1024px]:h-full min-[1024px]:w-full
+}
+
+.tablesection-div2 {
+  @apply flex flex-col flex-initial 
+  
+  max-[768px]:w-[50dvw] max-[768px]:h-[20dvh] max-[768px]:text-[5dvw]
+  
+  min-[769px]:max-[1023px]:w-[30dvw] min-[769px]:max-[1023px]:h-[15dvh] min-[769px]:max-[1023px]:text-[4dvw]
+  
+  min-[1024px]:w-[20dvw] min-[1024px]:h-[20dvh] min-[1024px]:text-[2dvw]
+}
+
+.tablesection-btn {
+  @apply panel-button-blue rounded-md h-full w-full
+  
+}
+
+
 /* Navbar */
 
 .navbar-button {
-  @apply flex flex-col flex-wrap justify-center w-[20dvh] text-center transition-all duration-300 hover:bg-gray-400 hover:shadow-md hover:text-white hover:text-xl
+  @apply flex flex-col flex-wrap justify-center w-[50%] text-center transition-all duration-300 hover:bg-gray-400 hover:shadow-md hover:text-white
+
+  min-[769px]:max-[1023px]:text-[1.5dvh]
+
+  min-[1024px]:w-[12dvw] min-[1024px]:hover:text-xl
+  
 }
 
+.navbar-div {
+  @apply bg-gray-200 w-[screen] h-[12dvh] flex
+  max-[768px]:text-[1.6dvh]
+  min-[769px]:max-[1023px]:text-[2.5dvh]
+
+}
+
+.navbar-nav {
+  @apply flex justify-between w-screen
+}
+
+.navbar-ul {
+  @apply flex justify-end h-full w-auto
+}
+
+/* Manage.jsx */
+.manage-div1 {
+  @apply 
+  max-[768px]:h-[76dvh] max-[768px]:bg-slate-500
+  min-[769px]:flex min-[769px]:justify-center min-[769px]:h-[76dvh] min-[769px]:items-center min-[769px]:bg-slate-500
+  min-[1024px]:flex min-[1024px]:justify-center min-[1024px]:h-[76dvh] min-[1024px]:items-center min-[1024px]:bg-slate-500
+}
+
+.manage-div2 {
+  @apply 
+  min-[769px]:flex min-[769px]:h-full min-[769px]:w-[80%]
+  min-[1024px]:flex min-[1024px]:h-full min-[1024px]:w-[80%]
+}
+
+.manage-div3 {
+  @apply 
+  max-[768px]:flex max-[768px]:h-[5dvh]
+  
+  min-[769px]:flex min-[769px]:flex-col min-[769px]:justify-center min-[769px]:items-center min-[769px]:h-full min-[769px]:w-[30%]
+  
+  min-[1024px]:flex min-[1024px]:flex-col min-[1024px]:justify-center min-[1024px]:items-center min-[1024px]:h-full min-[1024px]:w-[30%]
+}
+
+.manage-btn-clicked {
+  @apply animate-bounce
+  max-[768px]:bg-gray-600 max-[768px]:h-auto max-[768px]:w-[50%] max-[768px]:text-white max-[768px]:animate-none
+  
+  min-[769px]:bg-gray-600 min-[769px]:rounded-md min-[769px]:px-4 min-[769px]:mx-10 min-[769px]:my-4 min-[769px]:h-[13dvh] min-[769px]:w-[50%] min-[769px]:text-white
+  
+  min-[1024px]:bg-gray-600 min-[1024px]:rounded-md min-[1024px]:px-4 min-[1024px]:mx-10 min-[1024px]:my-4 min-[1024px]:h-[13dvh] min-[1024px]:w-[50%] min-[1024px]:text-white}
+
+.manage-btn-unclicked {
+  @apply 
+  max-[768px]:bg-gray-400 max-[768px]:h-auto max-[768px]:w-[50%]
+  min-[769px]:bg-gray-400 min-[769px]:rounded-md min-[769px]:px-4 min-[769px]:mx-10 min-[769px]:my-4 min-[769px]:h-[13dvh] min-[769px]:w-[50%]
+  min-[1024px]:bg-gray-400 min-[1024px]:rounded-md min-[1024px]:px-4 min-[1024px]:mx-10 min-[1024px]:my-4 min-[1024px]:h-[13dvh] min-[1024px]:w-[50%]
+}
+
+.manage-div4 {
+  @apply 
+  max-[768px]:w-full
+  min-[769px]:w-full min-[769px]:flex min-[769px]:justify-center min-[769px]:self-center
+  min-[1024px]:w-full min-[1024px]:flex min-[1024px]:justify-center min-[1024px]:self-center
+}
+
+
+
 /* ManageCat, ManageItem */
+.manage-h1 {
+  @apply
+  max-[768px]:hidden
+  /* min-[769px]:
+  min-[1024px]: */
+}
 
 .manage-main-dialog-box {
-  @apply panel my-5 mx-10 px-5 py-2 h-[60dvh] w-[60dvw]
+  @apply 
+  max-[768px]:px-5 max-[768px]:py-2 max-[768px]:h-[71dvh] max-[768px]:w-full
+  min-[769px]:my-5 min-[769px]:mx-10 min-[769px]:px-5 min-[769px]:py-2 min-[769px]:h-[60dvh] min-[769px]:w-[60dvw]
+  min-[1024px]:my-5 min-[1024px]:mx-10 min-[1024px]:px-5 min-[1024px]:py-2 min-[1024px]:h-[60dvh] min-[1024px]:w-[60dvw]
 }
 
 .add-button {
-  @apply bg-gray-400 rounded-md px-4 text-white my-2
+  @apply 
+max-[768px]:bg-gray-400 max-[768px]:rounded-md max-[768px]:text-white max-[768px]:mb-2 max-[768px]:w-[20dvw] max-[768px]:h-[5dvh]
+min-[769px]:bg-gray-400 min-[769px]:rounded-md min-[769px]:px-4 min-[769px]:text-white min-[769px]:my-2
+min-[1024px]:bg-gray-400 min-[1024px]:rounded-md min-[1024px]:px-4 min-[1024px]:text-white min-[1024px]:my-2
+
 }
 
 .content-dialog-box {
-  @apply overflow-y-scroll h-[48dvh] border-2 border-gray-600 border-solid bg-gray-200
+  @apply 
+  max-[768px]:overflow-y-scroll max-[768px]:h-[62dvh] max-[768px]:border-2 max-[768px]:border-gray-600 max-[768px]:border-solid max-[768px]:bg-gray-200 max-[768px]:text-[3dvw]
+
+  min-[769px]:overflow-y-scroll min-[769px]:h-[48dvh] min-[769px]:border-2 min-[769px]:border-gray-600 min-[769px]:border-solid min-[769px]:bg-gray-200
+
+  min-[1024px]:overflow-y-scroll min-[1024px]:h-[48dvh] min-[1024px]:border-2 min-[1024px]:border-gray-600 min-[1024px]:border-solid min-[1024px]:bg-gray-200
 }
 
 .manage-item-content-row-styling {
   @apply grid grid-cols-6 gap-5 p-2 odd:bg-slate-100 
+}
+
+.manage-item-div1 {
+  @apply flex justify-center
+}
+
+.manage-item-price {
+  @apply text-left w-[50%]
+}
+
+.manage-flex-just-center {
+  @apply flex justify-center
 }
 
 .manage-category-content-row-styling {
@@ -92,21 +272,51 @@ select {
   @apply bg-red-400 rounded-md px-2
 }
 
-/* Item and Category Dialog Styling */
+.manage-p1 {
+  @apply col-span-2
+}
+
+.icon {
+  @apply h-full
+}
+
+/* Item, Category, EditProfile Dialog Styling */
 
 .dialog-panel-bg {
   @apply fixed inset-0 flex w-screen items-center justify-center p-4 bg-black bg-opacity-80
 }
 
-.dialog-panel-category {
+.dialog-panel-profile {
   @apply shadow-lg rounded-md bg-gray-500 p-10 
-  h-[30dvh] w-[25dvw]
+  h-auto
+  w-auto
+  /* h-[55dvh] */
+}
+
+.dialog-panel-profile-img {
+  @apply max-w-20 max-h-20 min-w-8 min-h-8
+}
+
+.dialog-panel-category {
+  @apply bg-gray-500
+  max-[768px]:rounded-md max-[768px]:p-10 max-[768px]:h-auto max-[768px]:w-[80%] max-[768px]:text-[5dvw]
+  
+  min-[769px]:max-[1023px]:rounded-md min-[769px]:max-[1023px]:p-10 min-[769px]:max-[1023px]:h-[30%] min-[769px]:max-[1023px]:w-[60%] min-[769px]:max-[1023px]:text-[3dvw]
+  
+  min-[1024px]:rounded-md min-[1024px]:p-10 min-[1024px]:h-auto min-[1024px]:w-[25dvw]
 }
 
 .dialog-panel-item {
-  @apply shadow-lg rounded-md bg-gray-500 p-10 
-  /* h-auto w-auto */
-  h-[55dvh] w-[25dvw]
+  @apply bg-gray-500
+  max-[768px]:rounded-md max-[768px]:p-10 max-[768px]:h-auto max-[768px]:w-[80%] max-[768px]:text-[5dvw]
+  
+  min-[769px]:max-[1023px]:rounded-md min-[769px]:max-[1023px]:p-10 min-[769px]:max-[1023px]:h-[45%] min-[769px]:max-[1023px]:w-[60%] min-[769px]:max-[1023px]:text-[3dvw]
+  
+  min-[1024px]:rounded-md min-[1024px]:p-10 min-[1024px]:h-auto min-[1024px]:w-[25dvw]
+}
+
+.dialog-panel-selector {
+  @apply w-[50%]
 }
 
 .outer-div-dialog-buttons {
@@ -114,24 +324,225 @@ select {
 }
 
 .dialog-button {
-  @apply rounded-md bg-white min-w-[5dvw] mt-6 h-auto hover:scale-125 transition-all;
+  @apply rounded-md bg-white hover:scale-125 transition-all
+  max-[768px]:min-w-[5dvw] max-[768px]:mt-6 max-[768px]:h-auto max-[768px]:w-full
+  
+  min-[769px]:max-[1023px]:min-w-[5dvw] min-[769px]:max-[1023px]:mt-6 min-[769px]:max-[1023px]:h-auto min-[769px]:max-[1023px]:w-full
+  
+  min-[1024px]:min-w-[5dvw] min-[1024px]:mt-6 min-[1024px]:h-auto min-[1024px]:w-full 
 }
 
 .dialog-response {
   @apply text-center mt-5
 }
+  
 
-  /* Profile Dialog Styling */
-  .dialog-panel-profile {
-    @apply shadow-lg rounded-md bg-gray-500 p-10 
-    h-auto
-    w-auto
-    /* h-[55dvh] */
-  }
+/* Footer */
+.footer-outer-div {
+  @apply px-2 bg-gray-200 h-[12dvh] flex justify-center
+  max-[768px]:text-[2.5dvh]
+  min-[769px]:max-[1023px]:text-[2.5dvh]
+  /* min-[1024px]: */
+}
+
+.footer-inner-div {
+  @apply w-full flex justify-center items-center gap-2
+}
+
+.social-icon {
+  @apply h-[10dvh] w-[5dvw]
+  max-[768px]:h-[7dvh] max-[768px]:w-full
+  min-[769px]:max-[1023px]:h-[7dvh] min-[769px]:max-[1023px]:w-full
+}
+
+/* OrderPage.jsx */
+
+.orderpage-div1 {
+  @apply flex flex-col h-full
+  max-[768px]:text-[1.5dvh]
+}
+
+.orderpage-div2 {
+  @apply
+  max-[768px]:flex max-[768px]:justify-evenly max-[768px]:items-center max-[768px]:w-[100%]
+  
+  min-[769px]:max-[1023px]:pt-4 min-[769px]:max-[1023px]:pl-4
+  
+  min-[1024px]:pt-4 min-[1024px]:pl-4
+}
+
+.orderpage-table-title {
+  @apply text-white pr-5
+  max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center max-[768px]:pr-0 max-[768px]:w-full max-[768px]:h-[5dvh]
+  /* mix-[769px]:max-[1023px]:
+  mix-[1024px]: */
+}
+
+.orderpage-top-btn {
+  @apply bg-gray-600 text-white rounded-md  transition-all hover:scale-125 duration-100 hover:bg-gray-400
+  
+  max-[768px]:w-full max-[768px]:h-[8dvh] max-[768px]:rounded-none max-[768px]:border-l max-[768px]:border-y max-[768px]:border-solid max-[768px]:border-black
+  
+  min-[769px]:max-[1023px]:p-1 min-[769px]:max-[1023px]:mx-1 min-[769px]:max-[1023px]:mt-1 min-[769px]:max-[1023px]:w-[10dvw] min-[769px]:max-[1023px]:h-[5dvh]
+  
+  min-[1024px]:p-1 min-[1024px]:mx-1 min-[1024px]:mt-1 min-[1024px]:w-[10dvw] min-[1024px]:h-[5dvh]
+}
+
+.orderpage-div3 {
+  @apply 
+  max-[768px]:grid max-[768px]:grid-rows-1 
+  
+  min-[769px]:max-[1023px]:grid min-[769px]:max-[1023px]:grid-cols-3 min-[769px]:max-[1023px]:flex-1 min-[769px]:max-[1023px]:gap-8 min-[769px]:max-[1023px]:p-5 min-[769px]:max-[1023px]:h-[80%]
+  
+  min-[1024px]:grid min-[1024px]:grid-cols-3 min-[1024px]:flex-1 min-[1024px]:gap-8 min-[1024px]:p-5 min-[1024px]:h-[80%]
+}
+
+/* ItemListPrinting.jsx */
+.div1 {
+  @apply mt-10 flex justify-center
+}
+
+.div2 {
+  @apply w-[80%] border border-black border-solid
+}
+
+.div3 {
+  @apply font-semibold bg-gray-300 w-full flex justify-center border-b border-black border-solid
+}
+
+.div4 {
+  @apply flex flex-row justify-around font-semibold border-b border-black border-solid
+}
+
+.list {
+  @apply grid grid-cols-4 my-2 text-center
+}
+
+.div5 {
+  @apply px-10 py-2 border-t border-black border-solid
+}
+
+
+/* Sign-in & Sign-up Pages */
+.regis-h1 {
+  @apply
+  max-[768px]:text-[4dvh] 
+  min-[769px]:text-[4dvh] 
+  min-[1024px]:text-[4dvh] 
+}
+
+.regis-text {
+  @apply
+  max-[768px]:text-[2.8dvh] 
+  min-[769px]:text-[2.8dvh] 
+  min-[1024px]:text-[3dvh] 
+}
+
+.regis-text-2 {
+  @apply
+  max-[768px]:text-[2.8dvh] max-[768px]:text-center 
+  min-[769px]:text-[2.8dvh] min-[769px]:text-center
+  min-[1024px]:text-[3dvh] 
+}
+
+.regis-section {
+  @apply bg-blue-500 h-screen flex flex-col justify-center items-center
+}
+.regis-div1 {
+  @apply flex flex-col items-center
+}
+
+.regis-div3 {
+  @apply flex justify-center
+}
+
+.regis-form {
+  @apply
+  bg-slate-300 rounded-2xl flex flex-col justify-center items-center 
+  max-[768px]:w-[80dvw] max-[768px]:h-[70dvh] 
+  min-[769px]:w-[75dvw] min-[769px]:h-[60dvh] 
+  min-[1024px]:w-[20dvw] min-[1024px]:h-[65dvh] 
+
+}
+
+.regis-error-message {
+  @apply text-red-600 h-[7dvh] w-auto flex justify-center items-center text-center
+}
+
+.regis-input-field {
+  @apply rounded-lg border border-black
+  max-[768px]:mb-5 max-[768px]:w-[58dvw]
+  min-[769px]:max-[1024px]:mb-5 min-[769px]:max-[1024px]:w-[58dvw]
+  min-[1024px]:w-[15dvw]
+}
+
+.regis-submit-btn {
+  @apply border rounded-lg bg-emerald-500 text-white
+  max-[768px]:w-[40dvw] max-[768px]:h-[7dvh] max-[768px]:mt-5 
+  min-[769px]:w-[40dvw] min-[769px]:h-[7dvh] min-[769px]:mt-5
+  min-[1024px]:w-[10dvw] min-[1024px]:h-[6dvh] 
+}
+
+.regis-link-text-color {
+  @apply text-emerald-500
+}
+
+/* Sign-up Pages (Sign-up Successful) */
+.regis-success-section {
+  @apply bg-blue-500 h-screen flex flex-col place-content-center
+}
+
+.regis-success-div {
+@apply bg-slate-300 rounded-2xl w-1/4 h-1/4 mx-auto my-0 flex flex-col place-content-center items-center
+}
+
+/* Table.jsx */
+.table-div {
+  @apply h-[76dvh] bg-slate-500
+}
+
+/* RIghtPanel.jsx */
+.rpanel-div1 {
+  @apply shadow-md shadow-slate-600 rounded-md bg-white
+  max-[768px]:shadow-none max-[768px]:h-[43.1dvh] max-[768px]:rounded-none
+}
+
+.rpanel-div2 {
+  @apply text-left font-semibold bg-gray-300 w-full rounded-t-md flex justify-between
+  max-[768px]:px-[4dvw] max-[768px]:rounded-none
+}
+
+.rpanel-div3 {
+  @apply grid grid-cols-5 text-center font-semibold
+}
+
+.rpanel-p1 {
+  @apply col-span-2
+}
+
+.rpanel-ul1 {
+  @apply overflow-y-auto h-[55dvh]
+  max-[768px]:h-[38.5dvh] 
+}
+
+.rpanel-li1 {
+  @apply grid grid-cols-5 py-2 text-center odd:bg-gray-100 items-center
+}
+
+.rpanel-div4 {
+  @apply flex flex-row  bg-gray-600 rounded-md
+}
+
+.rpanel-btn {
+  @apply w-1/3  text-white
+}
+
+
 
   /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  @apply max-[768px]:hidden
 }
 
 /* Track */
@@ -150,7 +561,7 @@ select {
   background: #555;
 }
 
-@media all and (max-device-width: 430px) {
+/* @media all and (max-device-width: 430px) {
   body {
     font-size: 1rem;
     width: 100%;
@@ -168,4 +579,4 @@ select {
   .navbar-button {
     @apply w-[25dvw] h-[8dvh] text-center
   }
-}
+} */

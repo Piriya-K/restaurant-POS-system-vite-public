@@ -28,25 +28,29 @@ const DeleteItemDialog = ({
     <Dialog className="relative z-50" open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="dialog-panel-bg">
-        <Dialog.Panel className="shadow-lg rounded-md bg-gray-500 p-10 h-[30dvh] w-[25dvw]">
-          <Dialog.Title className="pb-5"></Dialog.Title>
-          <p className="text-center">
-            {`Confirm Delete: ${selectedItem.itemName}?`}{" "}
-          </p>
-          <div className="outer-div-dialog-buttons">
-            <button
-              className="dialog-button"
-              onClick={() => {
-                handleDeleteItem(selectedItem._id, userToken);
-              }}
-            >
-              Delete
-            </button>
-            <button className="dialog-button" onClick={onClose}>
-              Cancel
-            </button>
+        <Dialog.Panel className="dialog-panel-item">
+          <div className="flex flex-col">
+            <div className="self-center">
+              <Dialog.Title className="pb-5"></Dialog.Title>
+              <p className="text-center">
+                {`Confirm Delete: ${selectedItem.itemName}?`}{" "}
+              </p>
+              <div className="outer-div-dialog-buttons">
+                <button
+                  className="dialog-button"
+                  onClick={() => {
+                    handleDeleteItem(selectedItem._id, userToken);
+                  }}
+                >
+                  Delete
+                </button>
+                <button className="dialog-button" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            {editResponse && <p className="dialog-response">{editResponse}</p>}
           </div>
-          {editResponse && <p className="dialog-response">{editResponse}</p>}
         </Dialog.Panel>
       </div>
     </Dialog>

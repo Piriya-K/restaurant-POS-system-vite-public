@@ -71,35 +71,35 @@ const OrderPage = ({ clickBack, table, tableItem }) => {
 
   return (
     <>
-      <div className="flex flex-col h-full">
-        <div className="pt-4 pl-4">
-          <span className="text-white pr-5">{`TABLE: ${table.tableNum}`}</span>
+      <div className="orderpage-div1">
+        <div className="orderpage-div2">
+          <span className="orderpage-table-title">{`TABLE: ${table.tableNum}`}</span>
           <button
-            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
+            className="orderpage-top-btn"
             onClick={() => handleBackBtn()}
           >
             Back
           </button>
           <button
-            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
+            className="orderpage-top-btn"
             onClick={() => saveItemList(itemlist, table)}
           >
             Save Order
           </button>
           <button
-            className="bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
+            className="orderpage-top-btn"
             onClick={() => handlePrint(null, () => contentToPrint.current)}
           >
             Print to Kitchen
           </button>
           <button
-            className=" bg-gray-600 text-white p-1 mx-1 mt-1 rounded-md w-[10dvw] h-[5dvh] transition-all hover:scale-125 duration-100 hover:bg-gray-400"
+            className="orderpage-top-btn"
             onClick={() => handleCheckout(itemlist, table)}
           >
             Checkout
           </button>
         </div>
-        <div className="grid grid-cols-3 flex-1 gap-8 p-5 h-[80%]">
+        <div className="orderpage-div3">
           <LeftPanel onCategoryClick={handleMenuClick} />
           <CenterPanel
             selectedMenu={selectedMenu}

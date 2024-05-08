@@ -32,10 +32,10 @@ const Table = () => {
     selectedTable.tableNum == 1
       ? setTable1((prevTable1) => {
           const updatedTable1 = { ...prevTable1, itemlist: list };
-          console.log(`table1 is ${updatedTable1}`);
+          // console.log(`table1 is ${updatedTable1}`);
           setTables((prevTables) => {
             const updatedTables = { ...prevTables, table1: updatedTable1 };
-            console.log(`updatedTables is ${updatedTables}`);
+            // console.log(`updatedTables is ${updatedTables}`);
             localStorage.setItem("tables", JSON.stringify(updatedTables));
             return updatedTables;
           });
@@ -43,19 +43,19 @@ const Table = () => {
         })
       : setTable2((prevTable2) => {
           const updatedTable2 = { ...prevTable2, itemlist: list };
-          console.log(`table2 is ${updatedTable2}`);
+          // console.log(`table2 is ${updatedTable2}`);
           setTables((prevTables) => {
             const updatedTables = { ...prevTables, table2: updatedTable2 };
-            console.log(`updatedTables is ${updatedTables}`);
+            // console.log(`updatedTables is ${updatedTables}`);
             localStorage.setItem("tables", JSON.stringify(updatedTables));
             return updatedTables;
           });
           return updatedTable2;
         });
 
-    console.log(
-      `Inside local storage, tables is ${JSON.parse(localStorage.tables)}`
-    );
+    // console.log(
+    //   `Inside local storage, tables is ${JSON.parse(localStorage.tables)}`
+    // );
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Table = () => {
   return (
     <>
       <NavBar />
-      <div className="h-[76dvh] bg-slate-500">
+      <div className="table-div">
         {tableOpened ? (
           <OrderPage
             clickBack={clickBack}

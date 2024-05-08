@@ -9,12 +9,12 @@ const ItemListPrinting = React.forwardRef(({ itemlist, table }, ref) => {
 
   return (
     <>
-      <div ref={ref} className="mt-10 flex justify-center">
-        <div className="w-[80%] border border-black border-solid">
-          <div className="font-semibold bg-gray-300 w-full flex justify-center border-b border-black border-solid">
+      <div ref={ref} className="div1">
+        <div className="div2">
+          <div className="div3">
             <span>Table: {table.tableNum}</span>
           </div>
-          <div className="flex flex-row justify-around font-semibold border-b border-black border-solid">
+          <div className="div4">
             <p>Item</p>
             <p>Quantity</p>
             <p>Price</p>
@@ -24,7 +24,7 @@ const ItemListPrinting = React.forwardRef(({ itemlist, table }, ref) => {
             <ul>
               {itemlist.map((item, index) =>
                 item.quantity >= 1 ? (
-                  <li className="grid grid-cols-4 my-2 text-center" key={index}>
+                  <li className="list" key={index}>
                     <div>{item.name}</div>
                     <div>{item.quantity}</div>
                     <div>${item.price}</div>
@@ -34,7 +34,7 @@ const ItemListPrinting = React.forwardRef(({ itemlist, table }, ref) => {
               )}
             </ul>
           </div>
-          <div className="px-10 py-2 border-t border-black border-solid">
+          <div className="div5">
             <span>Total: ${sumValue.toFixed(2)}</span>
             <br />
             <span>{`Printed On: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`}</span>

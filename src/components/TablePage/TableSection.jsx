@@ -31,11 +31,8 @@ const TableSection = ({ clickTable, table1, table2 }) => {
 
   return (
     <>
-      <div className="flex justify-evenly items-center border bg-slate-500 h-full w-full">
-        <div
-          id="table"
-          className="flex flex-col flex-initial w-[10dvw] h-[15dvh] "
-        >
+      <div className="tablesection-div1">
+        <div id="table" className="tablesection-div2">
           {/* {tables.map((table) => (
             <>
               <button
@@ -50,7 +47,7 @@ const TableSection = ({ clickTable, table1, table2 }) => {
           ))} */}
 
           <button
-            className="panel-button-blue rounded-md h-[80%]"
+            className="tablesection-btn"
             value="T1"
             draggable="true"
             onClick={(e) => handleTableClick(e)}
@@ -65,12 +62,9 @@ const TableSection = ({ clickTable, table1, table2 }) => {
             )}
           </div>
         </div>
-        <div
-          id="table"
-          className="flex flex-col flex-initial w-[10dvw] h-[15dvh] "
-        >
+        <div id="table" className="tablesection-div2">
           <button
-            className="panel-button-blue rounded-md h-[80%]"
+            className="tablesection-btn"
             value="T2"
             draggable="true"
             onClick={(e) => handleTableClick(e)}

@@ -191,10 +191,7 @@ const EditProfileDialog = ({ isOpen, onClose }) => {
                 <label>
                   Profile Picture:
                   <span className="flex flex-col">
-                    <img
-                      src={imageFile}
-                      className="max-w-20 max-h-20 min-w-8 min-h-8"
-                    />
+                    <img src={imageFile} className="dialog-panel-profile-img" />
                     <input
                       id="profilePicture"
                       type="file"

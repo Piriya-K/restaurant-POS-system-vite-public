@@ -3,6 +3,8 @@ import { Appcontext } from "../../App";
 import EditCategoryDialog from "../Dialog/EditCategoryDialog";
 import AddCategoryDialog from "../Dialog/AddCategoryDialog";
 import DeleteCategoryDialog from "../Dialog/DeleteCategoryDialog";
+import { HiMiniPencilSquare } from "react-icons/hi2";
+import { TiDelete } from "react-icons/ti";
 
 const ManageCat = () => {
   //for useContext
@@ -58,9 +60,9 @@ const ManageCat = () => {
   };
 
   return (
-    <div className="manage-main-dialog-box">
+    <div className="manage-main-dialog-box panel">
       <div>
-        <h1>Edit Category</h1>
+        <h1 className="manage-h1">Edit Category</h1>
         <button
           className="add-button"
           onClick={(e) => showModalCategory(null, e)}
@@ -74,22 +76,35 @@ const ManageCat = () => {
             className="manage-category-content-row-styling"
             key={eachCategory._id}
           >
-            <p className="col-span-2">{eachCategory.categoryName}</p>
-            <div className="w-full flex justify-center">
-              <button
+            <p className="manage-p1">{eachCategory.categoryName}</p>
+            <div className="manage-flex-just-center">
+              {/* <button
                 onClick={(e) => showModalCategory(eachCategory, e)}
                 className="edit-btn"
               >
                 EDIT
-              </button>
+              </button> */}
+              <HiMiniPencilSquare
+                onClick={() => {
+                  setIsOpen(!isOpen), setSelectedCategory(eachCategory);
+                }}
+                className="icon"
+              />
             </div>
             <div className="delete-btn-outer-div">
-              <button
+              {/* <button
                 className="delete-btn"
                 onClick={(e) => showModalCategory(eachCategory, e)}
               >
                 DELETE
-              </button>
+              </button> */}
+
+              <TiDelete
+                onClick={() => {
+                  setIsOpen3(!isOpen3), setSelectedCategory(eachCategory);
+                }}
+                className="icon"
+              />
             </div>
           </div>
         ))}

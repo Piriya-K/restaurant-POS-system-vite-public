@@ -14,25 +14,28 @@ const RightPanel = React.forwardRef(({ itemlist, onQuantityClick }, ref) => {
   }, 0);
 
   return (
-    <div className="shadow-md shadow-slate-600 rounded-md bg-white">
-      <div className="text-left font-semibold bg-gray-300 w-full rounded-t-md flex justify-between">
+    <div className="rpanel-div1">
+      <div className="rpanel-div2">
         <span>Total: ${sumValue.toFixed(2)}</span>
       </div>
-      <div className="grid grid-cols-5 text-center font-semibold">
-        <p className="col-span-2">Item</p>
+      <div className="rpanel-div3">
+        <p className="rpanel-p1">Item</p>
         <p>Quantity</p>
         <p>Price</p>
         <p>Value</p>
       </div>
       <div>
-        <ul className="overflow-y-scroll h-[55dvh]">
+        <ul className="rpanel-ul1">
           {itemlist.map((item, index) =>
             item.quantity >= 1 ? (
-              <li className="grid grid-cols-5 mt-2 text-center odd:bg-gray-100" key={index}>
-                <div className="col-span-2">{item.name}</div>
-                <div className="flex flex-row  bg-gray-600 rounded-md">
+              <li
+                className="rpanel-li1"
+                key={index}
+              >
+                <div className="rpanel-p1">{item.name}</div>
+                <div className="rpanel-div4">
                   <button
-                    className="w-1/3  text-white"
+                    className="rpanel-btn"
                     onClick={() => {
                       let newQuantity = item.quantity - 1;
                       if (newQuantity > 0) {
@@ -42,9 +45,9 @@ const RightPanel = React.forwardRef(({ itemlist, onQuantityClick }, ref) => {
                   >
                     -
                   </button>
-                  <span className="w-1/3 bg-white">{item.quantity}</span>
+                  <span className="rpanel-btn">{item.quantity}</span>
                   <button
-                    className="w-1/3 text-white"
+                    className="rpanel-btn"
                     onClick={() => {
                       let newQuantity = item.quantity + 1;
                       if (newQuantity > 0) {

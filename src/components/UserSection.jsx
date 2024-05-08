@@ -14,7 +14,7 @@ const UserSection = () => {
     setUser(null);
 
     /* Code to set itemlist property of tables object to an empty array (clear value)*/
-  
+
     /*    setTable1((prevTable1) => {
       const updatedTable1 = { ...prevTable1, itemlist: [] };
       return updatedTable1;
@@ -39,30 +39,30 @@ const UserSection = () => {
 
   return (
     <>
-      <div id="user-section" className="flex ml-4 items-center">
-        <div id="user-profile-image" className="">
-          <img src={imageFile} className="w-[5dvw] h-[9dvh]" />
+      <div id="user-section" className="usersection-div1">
+        <div id="user-profile-image">
+          <img src={imageFile} className="usersection-img" />
         </div>
-        <div id="user-info" className=" pl-2">
-          <div id="user-greeting" className="">
+        <div id="user-info" className="usersection-div2">
+          <div id="user-greeting">
             <p className="">
-              Hello,
-              <span className="text-blue-400">
+              <span className="user-greeting">Hello,</span>
+              <span className="usersection-username">
                 {user ? " " + user.userName : null}
               </span>
             </p>
           </div>
-          <div id="user-option" className="flex gap-2 justify-around">
+          <div id="user-option" className="usersection-div3">
             <Link
               to="#"
-              className="hover:underline hover:scale-110 duration-300"
+              className="usersection-link-animation"
               onClick={() => showModalEditProfile()}
             >
               My Profile
             </Link>
             <Link
               to="/login"
-              className="hover:underline duration-300 hover:scale-110"
+              className="usersection-link-animation"
               onClick={handleSignOut}
             >
               Sign Out

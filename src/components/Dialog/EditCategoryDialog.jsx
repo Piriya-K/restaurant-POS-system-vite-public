@@ -32,44 +32,48 @@ const EditCategoryDialog = ({
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="dialog-panel-bg">
         <Dialog.Panel className="dialog-panel-category">
-          <Dialog.Title className="pb-5">Edit Category</Dialog.Title>
-          <label>
-            Name:{" "}
-            <input
-              id="catNameInput"
-              type="text"
-              defaultValue={selectedCategoryName}
-              autoComplete="off"
-              onClick={() => {
-                (document.getElementById("catNameInput").className =
-                  "bg-white"),
-                  setEditResponse("");
-              }}
-            />
-          </label>
-          <div className="outer-div-dialog-buttons">
-            <button
-              className="dialog-button"
-              onClick={() => {
-                document.getElementById("catNameInput").value.length > 0
-                  ? handleEditCategory(
-                      document.getElementById("catNameInput").value,
-                      categoryId,
-                      userToken
-                    )
-                  : (((document.getElementById("catNameInput").className =
-                      "bg-red-300"),
-                    document.getElementById("catNameInput").focus()),
-                    setEditResponse("Name can't be empty!"));
-              }}
-            >
-              Save
-            </button>
-            <button className="dialog-button" onClick={onClose}>
-              Cancel
-            </button>
+          <div className="flex flex-col">
+            <div className="self-center">
+              <Dialog.Title className="pb-5">Edit Category</Dialog.Title>
+              <label>
+                Name: <br />
+                <input
+                  id="catNameInput"
+                  type="text"
+                  defaultValue={selectedCategoryName}
+                  autoComplete="off"
+                  onClick={() => {
+                    (document.getElementById("catNameInput").className =
+                      "bg-white"),
+                      setEditResponse("");
+                  }}
+                />
+              </label>
+              <div className="outer-div-dialog-buttons">
+                <button
+                  className="dialog-button"
+                  onClick={() => {
+                    document.getElementById("catNameInput").value.length > 0
+                      ? handleEditCategory(
+                          document.getElementById("catNameInput").value,
+                          categoryId,
+                          userToken
+                        )
+                      : (((document.getElementById("catNameInput").className =
+                          "bg-red-300"),
+                        document.getElementById("catNameInput").focus()),
+                        setEditResponse("Name can't be empty!"));
+                  }}
+                >
+                  Save
+                </button>
+                <button className="dialog-button" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            {editResponse && <p className="dialog-response">{editResponse}</p>}
           </div>
-          {editResponse && <p className="dialog-response">{editResponse}</p>}
         </Dialog.Panel>
       </div>
     </Dialog>

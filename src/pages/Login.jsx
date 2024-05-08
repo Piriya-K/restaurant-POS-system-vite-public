@@ -42,54 +42,50 @@ const Login = () => {
   };
 
   return (
-    <section className="bg-blue-500 h-screen flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center">
-        <form
-          onSubmit={handleSubmit}
-          className="bg-slate-300 rounded-2xl flex flex-col justify-center items-center w-[30dvw] h-[60dvh]"
-        >
-          <h1>SIGN-IN</h1>
-          <p
-            className="text-red-600 h-[5dvh] w-auto flex justify-center items-center"
-            id="message"
-          >
+    <section className="regis-section">
+      <div className="regis-div1">
+        <form onSubmit={handleSubmit} className="regis-form">
+          <h1 className="regis-h1">SIGN-IN</h1>
+          <p className="regis-error-message" id="message">
             {errorMessage}
           </p>
-          <div className="self-center">
-            <label htmlFor="username">Username: </label>
+          <div>
+            <label htmlFor="username" className="regis-text">
+              Username:{" "}
+            </label>
             <br />
             <input
               id="username"
               autoComplete="off"
               type="text"
               required
-              className="rounded-lg border border-black"
+              className="regis-input-field regis-text"
             />
             <br />
             <br />
-            <label htmlFor="password">Password: </label>
+            <label htmlFor="password" className="regis-text">
+              Password:{" "}
+            </label>
             <br />
             <input
               id="password"
               autoComplete="off"
               type="text"
               required
-              className="rounded-lg border border-black"
+              className="regis-input-field regis-text"
             />
             <br />
             <br />
-            <div className="flex justify-center">
-              <button className="border rounded-lg w-[10dvw] h-[5dvh] bg-emerald-500 text-white">
-                Submit
-              </button>
+            <div className="regis-div3">
+              <button className="regis-submit-btn regis-text">Submit</button>
             </div>
           </div>
         </form>
         <br />
-        <p>
+        <p className="regis-text-2">
           Don't have an account?{" "}
           {
-            <Link to="/register" className="text-emerald-500">
+            <Link to="/register" className="regis-link-text-color regis-text-2">
               Register Here!
             </Link>
           }

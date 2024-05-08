@@ -22,43 +22,47 @@ const AddCategoryDialog = ({ isOpen, onClose, addCategoryName }) => {
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="dialog-panel-bg">
         <Dialog.Panel className="dialog-panel-category">
-          <Dialog.Title className="pb-5">Add a Category</Dialog.Title>
-          <label htmlFor="catNameInput">
-            Name:{" "}
-            <input
-              id="catNameInput"
-              type="text"
-              required
-              autoComplete="off"
-              onClick={() => {
-                (document.getElementById("catNameInput").className =
-                  "bg-white"),
-                  setAddResponse("");
-              }}
-            />
-          </label>
-          <div className="outer-div-dialog-buttons">
-            <button
-              className="dialog-button"
-              onClick={() => {
-                document.getElementById("catNameInput").value.length > 0
-                  ? handleAddCategory(
-                      document.getElementById("catNameInput").value,
-                      userToken
-                    )
-                  : (((document.getElementById("catNameInput").className =
-                      "bg-red-300"),
-                    document.getElementById("catNameInput").focus()),
-                    setAddResponse("Name can't be empty!"));
-              }}
-            >
-              Save
-            </button>
-            <button className="dialog-button" onClick={onClose}>
-              Cancel
-            </button>
+          <div className="flex flex-col">
+            <div className="self-center">
+              <Dialog.Title className="pb-5">Add a Category</Dialog.Title>
+              <label htmlFor="catNameInput">
+                Name: <br />
+                <input
+                  id="catNameInput"
+                  type="text"
+                  required
+                  autoComplete="off"
+                  onClick={() => {
+                    (document.getElementById("catNameInput").className =
+                      "bg-white"),
+                      setAddResponse("");
+                  }}
+                />
+              </label>
+              <div className="outer-div-dialog-buttons">
+                <button
+                  className="dialog-button"
+                  onClick={() => {
+                    document.getElementById("catNameInput").value.length > 0
+                      ? handleAddCategory(
+                          document.getElementById("catNameInput").value,
+                          userToken
+                        )
+                      : (((document.getElementById("catNameInput").className =
+                          "bg-red-300"),
+                        document.getElementById("catNameInput").focus()),
+                        setAddResponse("Name can't be empty!"));
+                  }}
+                >
+                  Save
+                </button>
+                <button className="dialog-button" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            {addResponse && <p className="dialog-response">{addResponse}</p>}
           </div>
-          {addResponse && <p className="dialog-response">{addResponse}</p>}
         </Dialog.Panel>
       </div>
     </Dialog>

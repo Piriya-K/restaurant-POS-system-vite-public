@@ -3,6 +3,8 @@ import { Appcontext } from "../../App";
 import AddItemDialog from "../Dialog/AddItemDialog";
 import EditItemDialog from "../Dialog/EditItemDialog";
 import DeleteItemDialog from "../Dialog/DeleteItemDialog";
+import { HiMiniPencilSquare } from "react-icons/hi2";
+import { TiDelete } from "react-icons/ti";
 
 const ManageItem = () => {
   //for useContext
@@ -72,9 +74,9 @@ const ManageItem = () => {
   };
 
   return (
-    <div className="manage-main-dialog-box">
+    <div className="manage-main-dialog-box panel">
       <div>
-        <h1>Edit Item</h1>
+        <h1 className="manage-h1">Edit Item</h1>
         <button className="add-button" onClick={(e) => showModalItem(null, e)}>
           Add Item
         </button>
@@ -83,31 +85,45 @@ const ManageItem = () => {
       <div className="content-dialog-box">
         {item.map((eachItem, index) => (
           <div key={index} className="manage-item-content-row-styling">
-            <p className="col-span-2">{eachItem.itemName}</p>
+            <p className="manage-p1">{eachItem.itemName}</p>
             <p>
               {category &&
                 category
                   .filter((cat) => cat._id === eachItem.categoryId)
                   .map((cat) => <span key={cat._id}>{cat.categoryName}</span>)}
             </p>
-            <div className="flex justify-center">
-              <p className="text-left w-[50%]">${eachItem.itemPrice}</p>
+            <div className="manage-item-div1">
+              <p className="manage-item-price">${eachItem.itemPrice}</p>
             </div>
-            <div className="w-full flex justify-center">
-              <button
+            <div className="manage-flex-just-center">
+              {/* <button
                 onClick={(e) => showModalItem(eachItem, e)}
                 className="edit-btn"
               >
                 EDIT
-              </button>
+              </button> */}
+
+              <HiMiniPencilSquare
+                onClick={() => {
+                  setIsOpen(!isOpen), setSelectedItem(eachItem);
+                }}
+                className="icon"
+              />
             </div>
             <div className="delete-btn-outer-div">
-              <button
+              {/* <button
                 onClick={(e) => showModalItem(eachItem, e)}
                 className="delete-btn"
               >
                 DELETE
-              </button>
+              </button> */}
+
+              <TiDelete
+                onClick={() => {
+                  setIsOpen3(!isOpen3), setSelectedItem(eachItem);
+                }}
+                className="icon"
+              />
             </div>
           </div>
         ))}

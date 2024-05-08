@@ -89,7 +89,7 @@ const AddItemDialog = ({ isOpen, onClose, addItemToList, category }) => {
               <div className="mt-2">
                 <label>
                   Category: <br />
-                  <select id="categoryIdInput">
+                  <select id="categoryIdInput" className="dialog-panel-selector">
                     {category.map((cat) => (
                       <option key={cat._id} value={cat._id}>
                         {cat.categoryName}
@@ -98,25 +98,31 @@ const AddItemDialog = ({ isOpen, onClose, addItemToList, category }) => {
                   </select>
                 </label>
               </div>
-            </div>
-            <div className="outer-div-dialog-buttons">
-              <button
-                className="dialog-button"
-                onClick={() => {
-                  const itemName =
-                    document.getElementById("itemNameInput").value;
-                  const itemCategory =
-                    document.getElementById("categoryIdInput").value;
-                  const itemPrice =
-                    document.getElementById("itemPriceInput").value;
-                  inputValidation(itemName, itemCategory, itemPrice, userToken);
-                }}
-              >
-                Save
-              </button>
-              <button className="dialog-button" onClick={onClose}>
-                Cancel
-              </button>
+
+              <div className="outer-div-dialog-buttons">
+                <button
+                  className="dialog-button"
+                  onClick={() => {
+                    const itemName =
+                      document.getElementById("itemNameInput").value;
+                    const itemCategory =
+                      document.getElementById("categoryIdInput").value;
+                    const itemPrice =
+                      document.getElementById("itemPriceInput").value;
+                    inputValidation(
+                      itemName,
+                      itemCategory,
+                      itemPrice,
+                      userToken
+                    );
+                  }}
+                >
+                  Save
+                </button>
+                <button className="dialog-button" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
             </div>
             {addResponse && <p className="dialog-response">{addResponse}</p>}
           </div>

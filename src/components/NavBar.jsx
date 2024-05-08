@@ -4,12 +4,12 @@ import UserSection from "./UserSection";
 
 const NavBar = () => {
   return (
-    <div className="bg-gray-200 w-screen h-[12dvh] flex">
-      <nav className="flex justify-between w-screen">
+    <div className="navbar-div">
+      <nav className="navbar-nav">
         <UserSection />
         <ul
           id="page-selector"
-          className="flex justify-between h-full "
+          className="navbar-ul"
         >
           <li className="navbar-button">
             {<Link to="/order">Order Page</Link>}

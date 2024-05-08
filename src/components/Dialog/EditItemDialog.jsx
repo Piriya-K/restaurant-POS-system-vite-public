@@ -60,7 +60,7 @@ const EditItemDialog = ({
   return (
     <Dialog className="relative z-50" open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+      <div className="dialog-panel-bg">
         <Dialog.Panel className="dialog-panel-item">
           <div className="flex flex-col">
             <div className="self-center">
@@ -101,6 +101,7 @@ const EditItemDialog = ({
                   Category:
                   <br />
                   <select
+                    className="dialog-panel-selector"
                     id="categoryIdInput"
                     defaultValue={selectedItem.categoryId}
                   >

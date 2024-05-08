@@ -28,15 +28,15 @@ const Manage = () => {
   return (
     <>
       <NavBar />
-      <div className="flex justify-center h-[76dvh] items-center bg-slate-500">
-        <div className="flex h-full w-[80%]">
-          <div className="flex flex-col justify-center items-center  h-full w-[30%] ">
+      <div className="manage-div1">
+        <div className="manage-div2">
+          <div className="manage-div3">
             <button
               onClick={() => handleManageCategoryClick()}
               className={
                 showManageCat == true
-                  ? "bg-gray-600 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%] text-white animate-bounce"
-                  : "bg-gray-400 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%]"
+                  ? "manage-btn-clicked"
+                  : "manage-btn-unclicked"
               }
             >
               Manage Category
@@ -45,14 +45,14 @@ const Manage = () => {
               onClick={() => handleManageItemClick()}
               className={
                 showManageItem == true
-                  ? "bg-gray-600 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%] text-white animate-bounce"
-                  : "bg-gray-400 rounded-md px-4 mx-10 my-4 h-[13dvh] w-[50%]"
+                  ? "manage-btn-clicked"
+                  : "manage-btn-unclicked"
               }
             >
               Manage Item
             </button>
           </div>
-          <div className="w-full flex justify-center self-center">
+          <div className="manage-div4">
             {showManageCat ? <ManageCat /> : null}
             {showManageItem ? <ManageItem /> : null}
           </div>
