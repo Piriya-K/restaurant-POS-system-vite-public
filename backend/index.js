@@ -2,6 +2,7 @@
 //run the development server using the .env file: node --env-file=.env ./index.js
 
 import express from "express";
+import path from "path";
 import mongoose from "mongoose";
 import categoryRouter from "./routes/categoryRoute.js";
 import itemRouter from "./routes/itemRoute.js";
@@ -42,6 +43,11 @@ app.use("/items", itemRouter);
 
 //Router for the user model
 app.use("/users", userRouter);
+
+//serve content from the index.html file for requests that do not match a static file in the build folder
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
