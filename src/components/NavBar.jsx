@@ -12,10 +12,10 @@ const NavBar = () => {
           className="navbar-ul"
         >
           <li className="navbar-button">
-            {<Link to="/order">Order Page</Link>}
+            {<Link to="/order">Table</Link>}
           </li>
           <li className="navbar-button">
-            {<Link to="/manage">Menu Management</Link>}
+            {<Link to="/manage">Manage</Link>}
           </li>
         </ul>
       </nav>

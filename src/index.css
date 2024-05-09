@@ -194,7 +194,9 @@ select {
 }
 
 .navbar-ul {
-  @apply flex justify-end h-full w-auto
+  @apply flex justify-end h-full w-auto 
+  max-[768px]:w-[50%] 
+  min-[769px]:max-[1023px]:w-[30%] 
 }
 
 /* Manage.jsx */
@@ -330,8 +332,8 @@ select {
   max-[768px]:h-[5dvh] 
   max-[768px]:text-[2dvh]
 
-  min-[769px]:max-[1023px]:px-4 
-  min-[769px]:max-[1023px]:my-2
+  min-[769px]:px-4 
+  min-[769px]:my-2
 
 }
 
@@ -456,13 +458,13 @@ select {
 }
 
 .social-icon {
-  @apply h-[10dvh] w-[5dvw]
+  @apply h-[7dvh] w-[5dvw]
   
-  max-[768px]:h-[7dvh] 
-  max-[768px]:w-full
+  max-[768px]:h-[5dvh] 
+  max-[768px]:w-[10dvw]
   
   min-[769px]:max-[1023px]:h-[7dvh] 
-  min-[769px]:max-[1023px]:w-full
+  min-[769px]:max-[1023px]:w-[8dvw]
 }
 
 /* OrderPage.jsx */
@@ -651,13 +653,18 @@ select {
 }
 
 .regis-success-div {
-@apply bg-slate-300 rounded-2xl w-1/4 h-1/4 mx-auto my-0 flex flex-col place-content-center items-center
+@apply bg-slate-300 rounded-2xl mx-auto my-0 flex flex-col place-content-center items-center
 
 max-[768px]:w-[80dvw] 
 max-[768px]:h-[70dvh] 
 
 min-[769px]:max-[1023px]:w-[75dvw] 
 min-[769px]:max-[1023px]:h-[60dvh] 
+
+  
+min-[1024px]:w-[20dvw] 
+min-[1024px]:h-[65dvh] 
+
 }
 
 /* Table.jsx */
