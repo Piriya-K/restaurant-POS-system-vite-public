@@ -46,7 +46,7 @@ const Login = () => {
       <div className="regis-div1">
         <form onSubmit={handleSubmit} className="regis-form">
           <h1 className="regis-h1">SIGN-IN</h1>
-          <p className="regis-error-message" id="message">
+          <p className="regis-error-message regis-text" id="message">
             {errorMessage}
           </p>
           <div>

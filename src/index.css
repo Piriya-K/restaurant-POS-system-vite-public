@@ -602,8 +602,8 @@ select {
   max-[768px]:w-[80dvw] 
   max-[768px]:h-[70dvh] 
   
-  min-[769px]:w-[75dvw] 
-  min-[769px]:h-[60dvh] 
+  min-[769px]:max-[1023px]:w-[75dvw] 
+  min-[769px]:max-[1023px]:h-[60dvh] 
   
   min-[1024px]:w-[20dvw] 
   min-[1024px]:h-[65dvh] 
@@ -652,6 +652,12 @@ select {
 
 .regis-success-div {
 @apply bg-slate-300 rounded-2xl w-1/4 h-1/4 mx-auto my-0 flex flex-col place-content-center items-center
+
+max-[768px]:w-[80dvw] 
+max-[768px]:h-[70dvh] 
+
+min-[769px]:max-[1023px]:w-[75dvw] 
+min-[769px]:max-[1023px]:h-[60dvh] 
 }
 
 /* Table.jsx */
