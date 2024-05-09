@@ -145,8 +145,8 @@ const Register = () => {
                   className="regis-input-field regis-text"
                   onChange={checkUsername}
                 />
-                {/* <br />
-                <br /> */}
+                <br />
+                <br />
                 <div className="regis-div3">
                   <button
                     ahref="#"

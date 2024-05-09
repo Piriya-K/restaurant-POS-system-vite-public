@@ -672,6 +672,7 @@ min-[769px]:max-[1023px]:h-[60dvh]
   max-[768px]:shadow-none 
   max-[768px]:h-[43.1dvh] 
   max-[768px]:rounded-none
+  max-[768px]:text-[2.5dvh]
 }
 
 .rpanel-div2 {
@@ -683,6 +684,7 @@ min-[769px]:max-[1023px]:h-[60dvh]
 
 .rpanel-div3 {
   @apply grid grid-cols-5 text-center font-semibold
+  max-[768px]:grid-cols-4
 }
 
 .rpanel-p1 {
@@ -692,11 +694,12 @@ min-[769px]:max-[1023px]:h-[60dvh]
 .rpanel-ul1 {
   @apply overflow-y-auto h-[55dvh]
   
-  max-[768px]:h-[38.5dvh] 
+  max-[768px]:h-[35.5dvh] 
 }
 
 .rpanel-li1 {
   @apply grid grid-cols-5 py-2 text-center odd:bg-gray-100 items-center
+  max-[768px]:grid-cols-4
 }
 
 .rpanel-div4 {
@@ -705,6 +708,11 @@ min-[769px]:max-[1023px]:h-[60dvh]
 
 .rpanel-btn {
   @apply w-1/3  text-white
+}
+
+.rpanel-price {
+  @apply 
+  max-[768px]:hidden
 }
 
 

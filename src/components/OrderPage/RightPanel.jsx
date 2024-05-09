@@ -21,7 +21,7 @@ const RightPanel = React.forwardRef(({ itemlist, onQuantityClick }, ref) => {
       <div className="rpanel-div3">
         <p className="rpanel-p1">Item</p>
         <p>Quantity</p>
-        <p>Price</p>
+        <p className="rpanel-price">Price</p>
         <p>Value</p>
       </div>
       <div>
@@ -58,7 +58,7 @@ const RightPanel = React.forwardRef(({ itemlist, onQuantityClick }, ref) => {
                     +
                   </button>
                 </div>
-                <div>${item.price}</div>
+                <div className="rpanel-price">${item.price}</div>
                 <div>${item.value}</div>
               </li>
             ) : null
