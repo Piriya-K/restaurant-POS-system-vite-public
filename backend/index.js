@@ -44,11 +44,6 @@ app.use("/items", itemRouter);
 //Router for the user model
 app.use("/users", userRouter);
 
-//serve content from the index.html file for requests that do not match a static file in the build folder
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./images");
