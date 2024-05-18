@@ -23,7 +23,7 @@ Application Details:
    * Passwords are securely hashed before storage.
    * All server requests are authenticated and validated.
 
-<strong>Access the application at https://pos-system-mern-frontend-piriya.onrender.com</strong>
+<strong>Access the application at https://piriya-pos.onrender.com</strong>
 
 <strong>Sign-up for a new account or sign-in with the following credentials: </br>
 username: a </br>
